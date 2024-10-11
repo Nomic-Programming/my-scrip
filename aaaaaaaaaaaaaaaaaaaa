@@ -16,17 +16,20 @@ local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
 button.Position = UDim2.new(0.5, -100, 0.5, -25)
 button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-button.Text = "Speed Up All Carts"
+button.Text = "Press All 'Up' Buttons"
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.Font = Enum.Font.SourceSans
 button.TextSize = 24
 button.Parent = frame
 
--- Function to run when the button is clicked
+-- Function to press all "Up" buttons
 local function onButtonClick()
-    for i, v in pairs(game.Workspace:GetDescendants()) do
-        if v.Name == "Up" then
-            fireclickdetector(v.Click)
+    for _, cart in pairs(workspace:GetDescendants()) do
+        if cart:IsA("Model") and cart:FindFirstChild("Up") then
+            local button = cart.Up:FindFirstChildOfClass("ClickDetector")
+            if button then
+                button:Fire()
+            end
         end
     end
 end
