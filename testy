@@ -1,3 +1,4 @@
+-- Function to create a BillboardGui on a part
 local function createBillboardGui(part)
     -- Create BillboardGui
     local billboardGui = Instance.new("BillboardGui")
@@ -30,6 +31,9 @@ local function findAndCreateGui()
         end
     end
 end
+
+-- Wait for the game to fully load
+game.Players.LocalPlayer.CharacterAdded:Wait()
 
 -- Run the function to find the parts and create the GUI
 findAndCreateGui()
