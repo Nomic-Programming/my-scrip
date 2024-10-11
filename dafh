@@ -315,4 +315,6 @@ local function ODIHEOF_fake_script() -- slowdown.LocalScript
 	-- Connect the button click to the function
 	button.MouseButton1Click:Connect(slowDownAllCarts)
 end
-coroutine.wrap(ODIHEOF_fake_script)()
+	
+	
+end
