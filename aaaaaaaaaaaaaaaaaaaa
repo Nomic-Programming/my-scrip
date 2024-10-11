@@ -1,25 +1,11 @@
 -- Speed Up Function
 local function speedUpNearbyCarts()
-    while true do
-        wait(0.1)  -- Adjust the delay as needed
-        for _, cart in pairs(workspace:GetDescendants()) do
-            if cart.Name == "Up" and (cart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 15 then
-                fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
-            end
+    for _, cart in pairs(workspace:GetDescendants()) do
+        if cart.Name == "Up" and (cart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 15 then
+            fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
         end
     end
 end
 
--- Example of starting the speed-up function
-local speedUpToggle = false
-
--- Toggle Function
-local function toggleSpeedUp()
-    speedUpToggle = not speedUpToggle
-    if speedUpToggle then
-        speedUpNearbyCarts()  -- Start the speed-up function
-    end
-end
-
--- Call the toggle function to start speed up
-toggleSpeedUp()
+-- Call the speed-up function once
+speedUpNearbyCarts()
