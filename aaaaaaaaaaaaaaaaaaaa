@@ -25,7 +25,7 @@ button.Parent = frame
 -- Create an "X" button to close the GUI
 local closeButton = Instance.new("TextButton")
 closeButton.Size = UDim2.new(0, 50, 0, 50)
-closeButton.Position = UDim2.new(1, -60, 0, 10)
+closeButton.Position = UDim2.new(1, -60, 0, 10) -- Position in the top right corner
 closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 closeButton.Text = "X"
 closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -41,9 +41,10 @@ local function onButtonClick()
             if upButton and upButton:IsA("Part") then
                 local clickPart = upButton:FindFirstChild("Click")
                 if clickPart then
-                    local clickScript = clickPart:FindFirstChild("Script") -- Adjust if needed
-                    if clickScript then
-                        clickScript:Invoke() -- Call the function directly
+                    -- Ensure the script that handles speed is invoked correctly
+                    local chngScript = clickPart:FindFirstChild("Script")
+                    if chngScript then
+                        chngScript:Invoke() -- Invoke the chng function
                     end
                 end
             end
