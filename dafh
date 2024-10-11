@@ -1,0 +1,387 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local fun = Instance.new("ScreenGui")
+local topbar = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local title = Instance.new("TextLabel")
+local topbar2 = Instance.new("Frame")
+local _ = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+local tabs = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local Frame = Instance.new("Frame")
+local locatuon = Instance.new("ImageButton")
+local carts = Instance.new("ImageButton")
+local hackorman = Instance.new("ImageButton")
+local Gradient = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local UICorner_3 = Instance.new("UICorner")
+local Carts = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local ScrollingFrame_2 = Instance.new("ScrollingFrame")
+local nonloop = Instance.new("TextLabel")
+local activate = Instance.new("TextButton")
+local speedup = Instance.new("ImageButton")
+local slowdown = Instance.new("ImageButton")
+local deactivate = Instance.new("TextButton")
+local nonloop_2 = Instance.new("TextLabel")
+
+--Properties:
+
+fun.Name = "fun"
+fun.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+fun.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+topbar.Name = "topbar"
+topbar.Parent = fun
+topbar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+topbar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+topbar.BorderSizePixel = 0
+topbar.LayoutOrder = 100
+topbar.Position = UDim2.new(0.338740528, 0, 0.171660289, 0)
+topbar.Size = UDim2.new(0, 535, 0, 34)
+topbar.ZIndex = 97843587
+
+UICorner.Parent = topbar
+
+title.Name = "title"
+title.Parent = topbar
+title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+title.BackgroundTransparency = 1.000
+title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+title.BorderSizePixel = 0
+title.Size = UDim2.new(0, 200, 0, 34)
+title.Font = Enum.Font.Ubuntu
+title.Text = "Cart Ride into Rdite!"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextScaled = true
+title.TextSize = 14.000
+title.TextWrapped = true
+
+topbar2.Name = "topbar2"
+topbar2.Parent = topbar
+topbar2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+topbar2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+topbar2.BorderSizePixel = 0
+topbar2.LayoutOrder = 100
+topbar2.Position = UDim2.new(-0.00144636212, 0, 0.712507784, 0)
+topbar2.Size = UDim2.new(0, 535, 0, 9)
+topbar2.ZIndex = 97843587
+
+_.Name = "_"
+_.Parent = topbar
+_.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_.BackgroundTransparency = 1.000
+_.BorderColor3 = Color3.fromRGB(0, 0, 0)
+_.BorderSizePixel = 0
+_.Position = UDim2.new(0.923513472, 0, -0.769655108, 0)
+_.Size = UDim2.new(0, 29, 0, 50)
+_.Font = Enum.Font.SourceSans
+_.Text = "_"
+_.TextColor3 = Color3.fromRGB(255, 255, 255)
+_.TextScaled = true
+_.TextSize = 14.000
+_.TextWrapped = true
+
+TextButton.Name = "+"
+TextButton.Parent = topbar
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.923513472, 0, -0.323529422, 0)
+TextButton.Size = UDim2.new(0, 40, 0, 45)
+TextButton.Visible = false
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "+"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+tabs.Name = "tabs"
+tabs.Parent = topbar
+tabs.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+tabs.BorderColor3 = Color3.fromRGB(0, 0, 0)
+tabs.BorderSizePixel = 0
+tabs.Position = UDim2.new(5.70422038e-08, 0, 12.9117651, 0)
+tabs.Size = UDim2.new(0, 535, 0, 34)
+
+UICorner_2.CornerRadius = UDim.new(0, 15)
+UICorner_2.Parent = tabs
+
+Frame.Parent = tabs
+Frame.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(5.70422038e-08, 0, 0, 0)
+Frame.Size = UDim2.new(0, 535, 0, 14)
+
+locatuon.Name = "locatuon"
+locatuon.Parent = tabs
+locatuon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+locatuon.BackgroundTransparency = 1.000
+locatuon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+locatuon.BorderSizePixel = 0
+locatuon.Position = UDim2.new(0.373831779, 0, -0.0588235296, 0)
+locatuon.Size = UDim2.new(0, 42, 0, 37)
+locatuon.Image = "rbxassetid://85489766208695"
+
+carts.Name = "carts"
+carts.Parent = tabs
+carts.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+carts.BackgroundTransparency = 1.000
+carts.BorderColor3 = Color3.fromRGB(0, 0, 0)
+carts.BorderSizePixel = 0
+carts.Position = UDim2.new(0.454205602, 0, 0.0882352963, 0)
+carts.Size = UDim2.new(0, 49, 0, 28)
+carts.Image = "rbxassetid://102370017160912"
+
+hackorman.Name = "hackorman"
+hackorman.Parent = tabs
+hackorman.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+hackorman.BackgroundTransparency = 1.000
+hackorman.BorderColor3 = Color3.fromRGB(0, 0, 0)
+hackorman.BorderSizePixel = 0
+hackorman.Position = UDim2.new(0.557009339, 0, 0.0294117648, 0)
+hackorman.Size = UDim2.new(0, 38, 0, 30)
+hackorman.Image = "rbxassetid://123141637901874"
+
+Gradient.Name = "Gradient"
+Gradient.Parent = fun
+Gradient.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Gradient.BorderColor3 = Color3.fromRGB(53, 0, 0)
+Gradient.BorderSizePixel = 0
+Gradient.Position = UDim2.new(0.338740677, 0, 0.171660289, 0)
+Gradient.Size = UDim2.new(0, 535, 0, 473)
+Gradient.ZIndex = 0
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(92, 3, 108)), ColorSequenceKeypoint.new(0.30, Color3.fromRGB(32, 1, 37)), ColorSequenceKeypoint.new(0.43, Color3.fromRGB(32, 1, 38)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32, 1, 38)), ColorSequenceKeypoint.new(0.56, Color3.fromRGB(32, 1, 38)), ColorSequenceKeypoint.new(0.82, Color3.fromRGB(33, 1, 39)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(92, 3, 108))}
+UIGradient.Rotation = 45
+UIGradient.Parent = Gradient
+
+UICorner_3.CornerRadius = UDim.new(0, 15)
+UICorner_3.Parent = Gradient
+
+Carts.Name = "Carts"
+Carts.Parent = Gradient
+Carts.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Carts.BackgroundTransparency = 1.000
+Carts.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Carts.BorderSizePixel = 0
+Carts.Position = UDim2.new(-0.00186927291, 0, 0.0697674453, 0)
+Carts.Size = UDim2.new(0, 535, 0, 407)
+
+ScrollingFrame.Parent = Carts
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Size = UDim2.new(0, 535, 0, 404)
+
+ScrollingFrame_2.Parent = Carts
+ScrollingFrame_2.Active = true
+ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_2.BackgroundTransparency = 1.000
+ScrollingFrame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame_2.BorderSizePixel = 0
+ScrollingFrame_2.Size = UDim2.new(0, 535, 0, 409)
+
+nonloop.Name = "nonloop"
+nonloop.Parent = ScrollingFrame_2
+nonloop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+nonloop.BackgroundTransparency = 1.000
+nonloop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nonloop.BorderSizePixel = 0
+nonloop.Position = UDim2.new(0.0515151508, 0, 0.0352112688, 0)
+nonloop.Size = UDim2.new(0, 88, 0, 24)
+nonloop.Font = Enum.Font.SourceSans
+nonloop.Text = "Non-Loop"
+nonloop.TextColor3 = Color3.fromRGB(213, 213, 213)
+nonloop.TextScaled = true
+nonloop.TextSize = 14.000
+nonloop.TextWrapped = true
+
+activate.Name = "activate"
+activate.Parent = ScrollingFrame_2
+activate.BackgroundColor3 = Color3.fromRGB(25, 213, 0)
+activate.BorderColor3 = Color3.fromRGB(0, 0, 0)
+activate.BorderSizePixel = 0
+activate.Position = UDim2.new(0.26666671, 0, 0.159199685, 0)
+activate.Size = UDim2.new(0, 129, 0, 54)
+activate.Font = Enum.Font.SourceSans
+activate.Text = ""
+activate.TextColor3 = Color3.fromRGB(255, 255, 255)
+activate.TextSize = 14.000
+
+speedup.Name = "speedup"
+speedup.Parent = ScrollingFrame_2
+speedup.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+speedup.BorderColor3 = Color3.fromRGB(0, 0, 0)
+speedup.BorderSizePixel = 0
+speedup.Position = UDim2.new(0.506173909, 0, 0.159199685, 0)
+speedup.Size = UDim2.new(0, 55, 0, 54)
+speedup.Image = "http://www.roblox.com/asset/?id=2008919"
+
+slowdown.Name = "slowdown"
+slowdown.Parent = ScrollingFrame_2
+slowdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+slowdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+slowdown.BorderSizePixel = 0
+slowdown.Position = UDim2.new(0.163551405, 0, 0.159199685, 0)
+slowdown.Rotation = 180.000
+slowdown.Size = UDim2.new(0, 55, 0, 54)
+slowdown.ZIndex = 0
+slowdown.Image = "http://www.roblox.com/asset/?id=2008919"
+
+deactivate.Name = "deactivate"
+deactivate.Parent = ScrollingFrame_2
+deactivate.BackgroundColor3 = Color3.fromRGB(213, 0, 0)
+deactivate.BorderColor3 = Color3.fromRGB(0, 0, 0)
+deactivate.BorderSizePixel = 0
+deactivate.Position = UDim2.new(0.26666671, 0, 0.228279173, 0)
+deactivate.Size = UDim2.new(0, 129, 0, 54)
+deactivate.Font = Enum.Font.SourceSans
+deactivate.Text = ""
+deactivate.TextColor3 = Color3.fromRGB(255, 255, 255)
+deactivate.TextSize = 14.000
+
+nonloop_2.Name = "nonloop"
+nonloop_2.Parent = ScrollingFrame_2
+nonloop_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+nonloop_2.BackgroundTransparency = 1.000
+nonloop_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nonloop_2.BorderSizePixel = 0
+nonloop_2.Position = UDim2.new(0.303879887, 0, 0.113089301, 0)
+nonloop_2.Size = UDim2.new(0, 88, 0, 24)
+nonloop_2.Font = Enum.Font.SourceSans
+nonloop_2.Text = "Every Cart"
+nonloop_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+nonloop_2.TextScaled = true
+nonloop_2.TextSize = 14.000
+nonloop_2.TextWrapped = true
+
+-- Scripts:
+
+local function OMFJZO_fake_script() -- _.LocalScript 
+	local script = Instance.new('LocalScript', _)
+
+	script.Parent.Activated:Connect(function()
+			script.Parent.Parent.Parent.Gradient.Visible = false
+		script.Parent.Visible = false
+		script.Parent.Parent["+"].Visible = true
+	end)
+	
+			
+	
+end
+coroutine.wrap(OMFJZO_fake_script)()
+local function UVNMJ_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	script.Parent.Activated:Connect(function()
+			script.Parent.Parent.Parent.Gradient.Visible = true
+		script.Parent.Visible = false
+		script.Parent.Parent._.Visible = true
+	end)
+	
+	
+	
+end
+coroutine.wrap(UVNMJ_fake_script)()
+local function DGLPX_fake_script() -- activate.LocalScript 
+	local script = Instance.new('LocalScript', activate)
+
+	function activate()
+		for i, v in pairs(workspace:GetDescendants()) do
+			if v.Name == "On" then
+				if v.BrickColor == BrickColor.new("Bright red") then
+					fireclickdetector(v.Click)
+			end
+		end
+	end
+	
+	if script.Parent.Activated == true then
+		activate()
+		end
+	end
+	
+	
+end
+coroutine.wrap(DGLPX_fake_script)()
+local function MIFIRU_fake_script() -- speedup.LocalScript 
+	local script = Instance.new('LocalScript', speedup)
+
+	local player = game.Players.LocalPlayer
+	local maxDistance = 10000000  -- 10 million studs
+	local button = script.Parent
+	
+	
+	-- Speed Up Function
+	local function speedUpAllCarts()
+		for _, cart in pairs(workspace:GetDescendants()) do
+			if cart.Name == "Up" and cart:FindFirstChild("Click") then
+				-- Check distance to the player
+				local distance = (cart.Position - player.Character.HumanoidRootPart.Position).magnitude
+				if distance <= maxDistance then
+					fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
+				end
+			end
+		end
+	
+		button.Text = "Speed Up Again"  -- Change button text after use
+	end
+	
+	-- Connect the button click to the function
+	button.MouseButton1Click:Connect(speedUpAllCarts)
+end
+coroutine.wrap(MIFIRU_fake_script)()
+local function IIBYPFA_fake_script() -- slowdown.LocalScript 
+	local script = Instance.new('LocalScript', slowdown)
+
+	-- Variables
+	local player = game.Players.LocalPlayer
+	local maxDistance = 10000000  -- 10 million studs
+	local button = script.Parent
+	
+	-- Speed Up Function
+	local function slowDownAllCarts()
+		for _, cart in pairs(workspace:GetDescendants()) do
+			if cart.Name == "Down" and cart:FindFirstChild("Click") then
+				-- Check distance to the player
+				local distance = (cart.Position - player.Character.HumanoidRootPart.Position).magnitude
+				if distance <= maxDistance then
+					fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
+				end
+			end
+		end
+	end
+	
+	-- Connect the button click to the function
+	button.MouseButton1Click:Connect(slowDownAllCarts)
+end
+coroutine.wrap(IIBYPFA_fake_script)()
+local function ULIKH_fake_script() -- deactivate.LocalScript 
+	local script = Instance.new('LocalScript', deactivate)
+
+	-- function deactivate()
+		-- for i, v in pairs(workspace:GetDescendants()) do
+			if v.Name == "On" then
+				if v.BrickColor == BrickColor.new("Dark green") then
+					fireclickdetector(v.Click)
+			end
+		end
+	end
+	
+	if script.Parent.Activated == true then
+		deactivate()
+		end
+	end
+	
+	
+end
+coroutine.wrap(ULIKH_fake_script)()
