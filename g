@@ -12,9 +12,9 @@ button.Text = "Speed Up Carts"
 button.Parent = screenGui
 
 -- Speed Up Function
-local function speedUpNearbyCarts()
+local function speedUpAllCarts()
     for _, cart in pairs(workspace:GetDescendants()) do
-        if cart.Name == "Up" and (cart.Position - player.Character.HumanoidRootPart.Position).Magnitude < 15 then
+        if cart.Name == "Up" and cart:FindFirstChild("Click") then
             fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
         end
     end
@@ -23,4 +23,4 @@ local function speedUpNearbyCarts()
 end
 
 -- Connect the button click to the function
-button.MouseButton1Click:Connect(speedUpNearbyCarts)
+button.MouseButton1Click:Connect(speedUpAllCarts)
