@@ -1,10 +1,16 @@
+local hasExecuted = false  -- Flag to track execution
+
 -- Speed Up Function
 local function speedUpNearbyCarts()
+    if hasExecuted then return end  -- Exit if already executed
+
     for _, cart in pairs(workspace:GetDescendants()) do
         if cart.Name == "Up" and (cart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 15 then
             fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
         end
     end
+    
+    hasExecuted = true  -- Set the flag to true after execution
 end
 
 -- Call the speed-up function once
