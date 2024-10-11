@@ -24,11 +24,17 @@ button.Parent = frame
 
 -- Function to press all "Up" buttons
 local function onButtonClick()
-    for _, cart in pairs(workspace:GetDescendants()) do
-        if cart:IsA("Model") and cart:FindFirstChild("Up") then
-            local clickPart = cart.Up:FindFirstChild("Click")
-            if clickPart then
-                clickPart:Fire()
+    for _, cart in pairs(workspace:GetChildren()) do
+        if cart:IsA("Model") then
+            local upButton = cart:FindFirstChild("Up")
+            if upButton and upButton:IsA("Part") then
+                local clickPart = upButton:FindFirstChild("Click") -- Ensure the Click part exists
+                if clickPart then
+                    local clickDetector = clickPart:FindFirstChildOfClass("ClickDetector") -- Adjust if needed
+                    if clickDetector then
+                        clickDetector:Fire() -- Simulate clicking
+                    end
+                end
             end
         end
     end
