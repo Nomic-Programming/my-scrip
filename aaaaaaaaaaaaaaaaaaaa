@@ -11,7 +11,7 @@ frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.BackgroundTransparency = 0.5
 frame.Parent = screenGui
 
--- Create a TextButton
+-- Create a TextButton to speed up carts
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
 button.Position = UDim2.new(0.5, -100, 0.5, -25)
@@ -22,18 +22,28 @@ button.Font = Enum.Font.SourceSans
 button.TextSize = 24
 button.Parent = frame
 
--- Function to call the change speed function
+-- Create an "X" button to close the GUI
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 50, 0, 50)
+closeButton.Position = UDim2.new(1, -60, 0, 10)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Font = Enum.Font.SourceSans
+closeButton.TextSize = 24
+closeButton.Parent = frame
+
+-- Function to speed up all carts
 local function onButtonClick()
     for _, cart in pairs(workspace:GetChildren()) do
         if cart:IsA("Model") then
             local upButton = cart:FindFirstChild("Up")
             if upButton and upButton:IsA("Part") then
                 local clickPart = upButton:FindFirstChild("Click")
-                if clickPart and clickPart:IsA("Part") then
-                    -- Call the chng function directly
-                    local chngFunction = clickPart:FindFirstChild("Script")
-                    if chngFunction then
-                        chngFunction:Invoke() -- Call the chng function
+                if clickPart then
+                    local clickScript = clickPart:FindFirstChild("Script") -- Adjust if needed
+                    if clickScript then
+                        clickScript:Invoke() -- Call the function directly
                     end
                 end
             end
@@ -41,5 +51,11 @@ local function onButtonClick()
     end
 end
 
--- Connect the button click to the function
+-- Function to close the GUI
+local function onCloseButtonClick()
+    screenGui:Destroy() -- Remove the GUI
+end
+
+-- Connect the button clicks to their functions
 button.MouseButton1Click:Connect(onButtonClick)
+closeButton.MouseButton1Click:Connect(onCloseButtonClick)
