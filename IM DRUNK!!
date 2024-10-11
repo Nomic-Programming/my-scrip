@@ -1,0 +1,241 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local epics = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local DragBar = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Carts = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local nonloop = Instance.new("TextLabel")
+local activate = Instance.new("TextButton")
+local speedup = Instance.new("ImageButton")
+local slowdown = Instance.new("ImageButton")
+local deactivate = Instance.new("TextButton")
+local nonloop_2 = Instance.new("TextLabel")
+
+--Properties:
+
+epics.Name = "epics"
+epics.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+epics.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = epics
+MainFrame.BackgroundColor3 = Color3.fromRGB(97, 97, 97)
+MainFrame.BackgroundTransparency = 1.000
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.374810308, 0, 0.286821693, 0)
+MainFrame.Size = UDim2.new(0, 330, 0, 330)
+
+DragBar.Name = "DragBar"
+DragBar.Parent = MainFrame
+DragBar.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+DragBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+DragBar.BorderSizePixel = 0
+DragBar.Size = UDim2.new(0, 330, 0, 46)
+DragBar.ZIndex = 100
+
+Title.Name = "Title"
+Title.Parent = DragBar
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0, 0, 0.195652172, 0)
+Title.Size = UDim2.new(0, 200, 0, 27)
+Title.Font = Enum.Font.SourceSans
+Title.Text = "Cart Ride into Rdite"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+Carts.Name = "Carts"
+Carts.Parent = MainFrame
+Carts.BackgroundColor3 = Color3.fromRGB(97, 97, 97)
+Carts.BackgroundTransparency = 0.300
+Carts.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Carts.BorderSizePixel = 0
+Carts.Position = UDim2.new(0, 0, 0.139393941, 0)
+Carts.Size = UDim2.new(0, 330, 0, 284)
+
+ScrollingFrame.Parent = Carts
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Size = UDim2.new(0, 330, 0, 284)
+
+nonloop.Name = "nonloop"
+nonloop.Parent = ScrollingFrame
+nonloop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+nonloop.BackgroundTransparency = 1.000
+nonloop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nonloop.BorderSizePixel = 0
+nonloop.Position = UDim2.new(0.0515151508, 0, 0.0352112688, 0)
+nonloop.Size = UDim2.new(0, 88, 0, 24)
+nonloop.Font = Enum.Font.SourceSans
+nonloop.Text = "Non-Loop"
+nonloop.TextColor3 = Color3.fromRGB(213, 213, 213)
+nonloop.TextScaled = true
+nonloop.TextSize = 14.000
+nonloop.TextWrapped = true
+
+activate.Name = "activate"
+activate.Parent = ScrollingFrame
+activate.BackgroundColor3 = Color3.fromRGB(25, 213, 0)
+activate.BorderColor3 = Color3.fromRGB(0, 0, 0)
+activate.BorderSizePixel = 0
+activate.Position = UDim2.new(0.266666681, 0, 0.154929578, 0)
+activate.Size = UDim2.new(0, 129, 0, 54)
+activate.Font = Enum.Font.SourceSans
+activate.Text = ""
+activate.TextColor3 = Color3.fromRGB(255, 255, 255)
+activate.TextSize = 14.000
+
+speedup.Name = "speedup"
+speedup.Parent = ScrollingFrame
+speedup.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+speedup.BorderColor3 = Color3.fromRGB(0, 0, 0)
+speedup.BorderSizePixel = 0
+speedup.Position = UDim2.new(0.657575786, 0, 0.154929578, 0)
+speedup.Size = UDim2.new(0, 55, 0, 54)
+speedup.Image = "http://www.roblox.com/asset/?id=2008919"
+
+slowdown.Name = "slowdown"
+slowdown.Parent = ScrollingFrame
+slowdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+slowdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+slowdown.BorderSizePixel = 0
+slowdown.Position = UDim2.new(0.100000001, 0, 0.154929578, 0)
+slowdown.Rotation = 180.000
+slowdown.Size = UDim2.new(0, 55, 0, 54)
+slowdown.ZIndex = 0
+slowdown.Image = "http://www.roblox.com/asset/?id=2008919"
+
+deactivate.Name = "deactivate"
+deactivate.Parent = ScrollingFrame
+deactivate.BackgroundColor3 = Color3.fromRGB(213, 0, 0)
+deactivate.BorderColor3 = Color3.fromRGB(0, 0, 0)
+deactivate.BorderSizePixel = 0
+deactivate.Position = UDim2.new(0.266666681, 0, 0.253521115, 0)
+deactivate.Size = UDim2.new(0, 129, 0, 54)
+deactivate.Font = Enum.Font.SourceSans
+deactivate.Text = ""
+deactivate.TextColor3 = Color3.fromRGB(255, 255, 255)
+deactivate.TextSize = 14.000
+
+nonloop_2.Name = "nonloop"
+nonloop_2.Parent = ScrollingFrame
+nonloop_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+nonloop_2.BackgroundTransparency = 1.000
+nonloop_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+nonloop_2.BorderSizePixel = 0
+nonloop_2.Position = UDim2.new(0.339393944, 0, 0.0985915512, 0)
+nonloop_2.Size = UDim2.new(0, 88, 0, 24)
+nonloop_2.Font = Enum.Font.SourceSans
+nonloop_2.Text = "Every Cart"
+nonloop_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+nonloop_2.TextScaled = true
+nonloop_2.TextSize = 14.000
+nonloop_2.TextWrapped = true
+
+-- Scripts:
+
+local function OMFJZO_fake_script() -- activate.LocalScript 
+	local script = Instance.new('LocalScript', activate)
+
+	function activate()
+		for i, v in pairs(workspace:GetDescendants()) do
+			if v.Name == "On" then
+				if v.BrickColor == BrickColor.new("Bright red") then
+					fireclickdetector(v.Click)
+			end
+		end
+	end
+	
+	if script.Parent.Activated == true then
+		activate()
+		end
+	end
+	
+	
+end
+coroutine.wrap(OMFJZO_fake_script)()
+local function UVNMJ_fake_script() -- speedup.LocalScript 
+	local script = Instance.new('LocalScript', speedup)
+
+	local player = game.Players.LocalPlayer
+	local maxDistance = 10000000  -- 10 million studs
+	local button = script.Parent
+	
+	
+	-- Speed Up Function
+	local function speedUpAllCarts()
+		for _, cart in pairs(workspace:GetDescendants()) do
+			if cart.Name == "Up" and cart:FindFirstChild("Click") then
+				-- Check distance to the player
+				local distance = (cart.Position - player.Character.HumanoidRootPart.Position).magnitude
+				if distance <= maxDistance then
+					fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
+				end
+			end
+		end
+	
+		button.Text = "Speed Up Again"  -- Change button text after use
+	end
+	
+	-- Connect the button click to the function
+	button.MouseButton1Click:Connect(speedUpAllCarts)
+end
+coroutine.wrap(UVNMJ_fake_script)()
+local function DGLPX_fake_script() -- slowdown.LocalScript 
+	local script = Instance.new('LocalScript', slowdown)
+
+	-- Variables
+	local player = game.Players.LocalPlayer
+	local maxDistance = 10000000  -- 10 million studs
+	local button = script.Parent
+	
+	-- Speed Up Function
+	local function slowDownAllCarts()
+		for _, cart in pairs(workspace:GetDescendants()) do
+			if cart.Name == "Down" and cart:FindFirstChild("Click") then
+				-- Check distance to the player
+				local distance = (cart.Position - player.Character.HumanoidRootPart.Position).magnitude
+				if distance <= maxDistance then
+					fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
+				end
+			end
+		end
+	end
+	
+	-- Connect the button click to the function
+	button.MouseButton1Click:Connect(slowDownAllCarts)
+end
+coroutine.wrap(DGLPX_fake_script)()
+local function MIFIRU_fake_script() -- deactivate.LocalScript 
+	local script = Instance.new('LocalScript', deactivate)
+
+	-- function deactivate()
+		-- for i, v in pairs(workspace:GetDescendants()) do
+			if v.Name == "On" then
+				if v.BrickColor == BrickColor.new("Dark green") then
+					fireclickdetector(v.Click)
+			end
+		end
+	end
+	
+	if script.Parent.Activated == true then
+		deactivate()
+		end
+	end
+	
+	
+end
+coroutine.wrap(MIFIRU_fake_script)()
