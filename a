@@ -16,8 +16,8 @@ inviteModule.Prompt({
 
 wait(5) --real
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-Ui-Library/main/source.lua",true))()
-local Window = Library.CreateLib("Cart Ride Into Rdite", "Ocean")
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/AAD",true))()
+local Window = Library.CreateLib("Cart Ride Into Rdite", "BloodTheme")
 
 
 -- Rest of your script...
