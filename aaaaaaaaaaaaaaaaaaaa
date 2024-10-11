@@ -26,9 +26,9 @@ button.Parent = frame
 local function onButtonClick()
     for _, cart in pairs(workspace:GetDescendants()) do
         if cart:IsA("Model") and cart:FindFirstChild("Up") then
-            local button = cart.Up:FindFirstChildOfClass("ClickDetector")
-            if button then
-                button:Fire()
+            local clickPart = cart.Up:FindFirstChild("Click")
+            if clickPart then
+                clickPart:Fire()
             end
         end
     end
