@@ -27,6 +27,7 @@ local Setting = Window:NewTab("Info/Setting")
 
 --SECTIONS INSIDE TABS
 local CartMain = Cart:NewSection("Carts")
+local CartAura = Cart:NewSection("Cart Aura")
 local AutoCart = Cart:NewSection("Auto Cart")
 
 local PlrMod = Plr:NewSection("Modification")
@@ -90,7 +91,7 @@ CartMain:NewButton("Spawn All Cart", "Spawns Every Cart", function()
 	end
 end)
 
-CartMain:NewToggle("Speed Up Aura", "Speeds every cart up near you", function(tog)
+CartAura:NewToggle("Speed Up Aura", "Speeds every cart up near you", function(tog)
 	if tog == true then
 		_G.SpeedUpAura = true
 
@@ -109,7 +110,7 @@ CartMain:NewToggle("Speed Up Aura", "Speeds every cart up near you", function(to
 	end
 end)
 
-CartMain:NewToggle("Slow Down Aura", "Slows down every cart near you", function(tog)
+CartAura:NewToggle("Slow Down Aura", "Slows down every cart near you", function(tog)
 	if tog == true then
 		_G.SlowDownAura = true
 
@@ -128,7 +129,7 @@ CartMain:NewToggle("Slow Down Aura", "Slows down every cart near you", function(
 	end
 end)
 
-CartMain:NewToggle("Turn On Aura", "Turns on every cart near you", function(tog)
+CartAura:NewToggle("Turn On Aura", "Turns on every cart near you", function(tog)
 	if tog == true then
 		_G.TurnOnAura = true
 
@@ -149,7 +150,7 @@ CartMain:NewToggle("Turn On Aura", "Turns on every cart near you", function(tog)
 	end
 end)
 
-CartMain:NewToggle("Turn Off Aura", "Turns on every cart near you", function(tog)
+CartAura:NewToggle("Turn Off Aura", "Turns on every cart near you", function(tog)
 	if tog == true then
 		_G.TurnOffAura = true
 
