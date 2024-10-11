@@ -23,10 +23,8 @@ local Carts = Instance.new("Frame")
 local ScrollingFrame = Instance.new("ScrollingFrame")
 local ScrollingFrame_2 = Instance.new("ScrollingFrame")
 local nonloop = Instance.new("TextLabel")
-local activate = Instance.new("TextButton")
 local speedup = Instance.new("ImageButton")
 local slowdown = Instance.new("ImageButton")
-local deactivate = Instance.new("TextButton")
 local nonloop_2 = Instance.new("TextLabel")
 
 --Properties:
@@ -206,18 +204,6 @@ nonloop.TextScaled = true
 nonloop.TextSize = 14.000
 nonloop.TextWrapped = true
 
-activate.Name = "activate"
-activate.Parent = ScrollingFrame_2
-activate.BackgroundColor3 = Color3.fromRGB(25, 213, 0)
-activate.BorderColor3 = Color3.fromRGB(0, 0, 0)
-activate.BorderSizePixel = 0
-activate.Position = UDim2.new(0.26666671, 0, 0.159199685, 0)
-activate.Size = UDim2.new(0, 129, 0, 54)
-activate.Font = Enum.Font.SourceSans
-activate.Text = ""
-activate.TextColor3 = Color3.fromRGB(255, 255, 255)
-activate.TextSize = 14.000
-
 speedup.Name = "speedup"
 speedup.Parent = ScrollingFrame_2
 speedup.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -238,18 +224,6 @@ slowdown.Size = UDim2.new(0, 55, 0, 54)
 slowdown.ZIndex = 0
 slowdown.Image = "http://www.roblox.com/asset/?id=2008919"
 
-deactivate.Name = "deactivate"
-deactivate.Parent = ScrollingFrame_2
-deactivate.BackgroundColor3 = Color3.fromRGB(213, 0, 0)
-deactivate.BorderColor3 = Color3.fromRGB(0, 0, 0)
-deactivate.BorderSizePixel = 0
-deactivate.Position = UDim2.new(0.26666671, 0, 0.228279173, 0)
-deactivate.Size = UDim2.new(0, 129, 0, 54)
-deactivate.Font = Enum.Font.SourceSans
-deactivate.Text = ""
-deactivate.TextColor3 = Color3.fromRGB(255, 255, 255)
-deactivate.TextSize = 14.000
-
 nonloop_2.Name = "nonloop"
 nonloop_2.Parent = ScrollingFrame_2
 nonloop_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -267,7 +241,7 @@ nonloop_2.TextWrapped = true
 
 -- Scripts:
 
-local function OMFJZO_fake_script() -- _.LocalScript 
+local function PTQTIK_fake_script() -- _.LocalScript 
 	local script = Instance.new('LocalScript', _)
 
 	script.Parent.Activated:Connect(function()
@@ -279,8 +253,8 @@ local function OMFJZO_fake_script() -- _.LocalScript
 			
 	
 end
-coroutine.wrap(OMFJZO_fake_script)()
-local function UVNMJ_fake_script() -- TextButton.LocalScript 
+coroutine.wrap(PTQTIK_fake_script)()
+local function WIAXGY_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	script.Parent.Activated:Connect(function()
@@ -292,28 +266,8 @@ local function UVNMJ_fake_script() -- TextButton.LocalScript
 	
 	
 end
-coroutine.wrap(UVNMJ_fake_script)()
-local function DGLPX_fake_script() -- activate.LocalScript 
-	local script = Instance.new('LocalScript', activate)
-
-	function activate()
-		for i, v in pairs(workspace:GetDescendants()) do
-			if v.Name == "On" then
-				if v.BrickColor == BrickColor.new("Bright red") then
-					fireclickdetector(v.Click)
-			end
-		end
-	end
-	
-	if script.Parent.Activated == true then
-		activate()
-		end
-	end
-	
-	
-end
-coroutine.wrap(DGLPX_fake_script)()
-local function MIFIRU_fake_script() -- speedup.LocalScript 
+coroutine.wrap(WIAXGY_fake_script)()
+local function DQDZ_fake_script() -- speedup.LocalScript 
 	local script = Instance.new('LocalScript', speedup)
 
 	local player = game.Players.LocalPlayer
@@ -322,7 +276,7 @@ local function MIFIRU_fake_script() -- speedup.LocalScript
 	
 	
 	-- Speed Up Function
-	local function speedUpAllCarts()
+	local function speedUp()
 		for _, cart in pairs(workspace:GetDescendants()) do
 			if cart.Name == "Up" and cart:FindFirstChild("Click") then
 				-- Check distance to the player
@@ -333,14 +287,11 @@ local function MIFIRU_fake_script() -- speedup.LocalScript
 			end
 		end
 	
-		button.Text = "Speed Up Again"  -- Change button text after use
-	end
-	
 	-- Connect the button click to the function
-	button.MouseButton1Click:Connect(speedUpAllCarts)
+	button.MouseButton1Click:Connect(speedUp)
 end
-coroutine.wrap(MIFIRU_fake_script)()
-local function IIBYPFA_fake_script() -- slowdown.LocalScript 
+coroutine.wrap(DQDZ_fake_script)()
+local function ODIHEOF_fake_script() -- slowdown.LocalScript 
 	local script = Instance.new('LocalScript', slowdown)
 
 	-- Variables
@@ -364,24 +315,4 @@ local function IIBYPFA_fake_script() -- slowdown.LocalScript
 	-- Connect the button click to the function
 	button.MouseButton1Click:Connect(slowDownAllCarts)
 end
-coroutine.wrap(IIBYPFA_fake_script)()
-local function ULIKH_fake_script() -- deactivate.LocalScript 
-	local script = Instance.new('LocalScript', deactivate)
-
-	-- function deactivate()
-		-- for i, v in pairs(workspace:GetDescendants()) do
-			if v.Name == "On" then
-				if v.BrickColor == BrickColor.new("Dark green") then
-					fireclickdetector(v.Click)
-			end
-		end
-	end
-	
-	if script.Parent.Activated == true then
-		deactivate()
-		end
-	end
-	
-	
-end
-coroutine.wrap(ULIKH_fake_script)()
+coroutine.wrap(ODIHEOF_fake_script)()
