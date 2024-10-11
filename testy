@@ -1,3 +1,8 @@
+-- LocalScript to create a BillboardGui on parts named "Up"
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
 -- Function to create a BillboardGui on a part
 local function createBillboardGui(part)
     -- Create BillboardGui
@@ -5,6 +10,7 @@ local function createBillboardGui(part)
     billboardGui.Size = UDim2.new(0, 200, 0, 50)
     billboardGui.Adornee = part
     billboardGui.AlwaysOnTop = true
+    billboardGui.Parent = part
 
     -- Create TextButton
     local button = Instance.new("TextButton")
@@ -17,23 +23,16 @@ local function createBillboardGui(part)
     button.MouseButton1Click:Connect(function()
         print("Button clicked on part 'Up'!")
     end)
-
-    -- Parent the BillboardGui to the part
-    billboardGui.Parent = part
 end
 
--- Function to find all parts named "Up"
+-- Function to find all parts named "Up" in the Workspace
 local function findAndCreateGui()
-    local parts = game.Workspace:GetChildren()
-    for _, part in ipairs(parts) do
+    for _, part in ipairs(workspace:GetChildren()) do
         if part:IsA("Part") and part.Name == "Up" then
             createBillboardGui(part)
         end
     end
 end
-
--- Wait for the game to fully load
-game.Players.LocalPlayer.CharacterAdded:Wait()
 
 -- Run the function to find the parts and create the GUI
 findAndCreateGui()
