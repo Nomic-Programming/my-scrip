@@ -5,27 +5,27 @@ screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 -- Create a Frame for layout
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 200)
-frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+frame.Size = UDim2.new(0, 400, 0, 250)
+frame.Position = UDim2.new(0.5, -200, 0.5, -125)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.BackgroundTransparency = 0.5
 frame.Parent = screenGui
 
 -- Create a TextButton to speed up carts
 local button = Instance.new("TextButton")
-button.Size = UDim2.new(0, 200, 0, 50)
-button.Position = UDim2.new(0.5, -100, 0.5, -25)
-button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-button.Text = "Speed Up All Carts"
+button.Size = UDim2.new(0, 250, 0, 50)
+button.Position = UDim2.new(0.5, -125, 0.5, -25)
+button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+button.Text = "Speed Up All Carts!"
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
-button.Font = Enum.Font.SourceSans
+button.Font = Enum.Font.SourceSansBold
 button.TextSize = 24
 button.Parent = frame
 
 -- Create an "X" button to close the GUI
 local closeButton = Instance.new("TextButton")
 closeButton.Size = UDim2.new(0, 50, 0, 50)
-closeButton.Position = UDim2.new(1, -60, 0, 10) -- Position in the top right corner
+closeButton.Position = UDim2.new(1, -60, 0, 10)
 closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 closeButton.Text = "X"
 closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -33,24 +33,43 @@ closeButton.Font = Enum.Font.SourceSans
 closeButton.TextSize = 24
 closeButton.Parent = frame
 
--- Function to speed up all carts
+-- Function to speed up all carts with dramatic effects
 local function onButtonClick()
+    local speedIncrease = 3
+    local cartCount = 0
+
     for _, cart in pairs(workspace:GetChildren()) do
         if cart:IsA("Model") then
             local upButton = cart:FindFirstChild("Up")
             if upButton and upButton:IsA("Part") then
                 local clickPart = upButton:FindFirstChild("Click")
                 if clickPart then
-                    local chngScript = clickPart:FindFirstChildWhichIsA("Script") -- Find the script that contains the function
+                    local chngScript = clickPart:FindFirstChildWhichIsA("Script")
                     if chngScript then
-                        local chngFunction = chngScript:FindFirstChild("chng") -- Make sure the function is named correctly
+                        local chngFunction = chngScript:FindFirstChild("chng")
                         if chngFunction then
-                            chngFunction:Invoke() -- Call the function
+                            chngFunction:Invoke() -- Invoke the speed change function
+                            cartCount += 1
                         end
                     end
                 end
             end
         end
+    end
+
+    -- Dramatic feedback
+    if cartCount > 0 then
+        button.Text = "Carts Speeding Up!"
+        button.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+        wait(1)
+        button.Text = "Speed Up All Carts!"
+        button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    else
+        button.Text = "No Carts Found!"
+        button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        wait(1)
+        button.Text = "Speed Up All Carts!"
+        button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
     end
 end
 
