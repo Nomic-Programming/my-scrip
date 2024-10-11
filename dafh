@@ -241,7 +241,7 @@ nonloop_2.TextWrapped = true
 
 -- Scripts:
 
-local function PTQTIK_fake_script() -- _.LocalScript 
+local function TLXX_fake_script() -- _.LocalScript 
 	local script = Instance.new('LocalScript', _)
 
 	script.Parent.Activated:Connect(function()
@@ -253,8 +253,8 @@ local function PTQTIK_fake_script() -- _.LocalScript
 			
 	
 end
-coroutine.wrap(PTQTIK_fake_script)()
-local function WIAXGY_fake_script() -- TextButton.LocalScript 
+coroutine.wrap(TLXX_fake_script)()
+local function BGSOX_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	script.Parent.Activated:Connect(function()
@@ -266,8 +266,8 @@ local function WIAXGY_fake_script() -- TextButton.LocalScript
 	
 	
 end
-coroutine.wrap(WIAXGY_fake_script)()
-local function DQDZ_fake_script() -- speedup.LocalScript 
+coroutine.wrap(BGSOX_fake_script)()
+local function KULJGKI_fake_script() -- speedup.LocalScript 
 	local script = Instance.new('LocalScript', speedup)
 
 	local player = game.Players.LocalPlayer
@@ -286,12 +286,12 @@ local function DQDZ_fake_script() -- speedup.LocalScript
 				end
 			end
 		end
-	
+	end
 	-- Connect the button click to the function
 	button.MouseButton1Click:Connect(speedUp)
 end
-coroutine.wrap(DQDZ_fake_script)()
-local function ODIHEOF_fake_script() -- slowdown.LocalScript 
+coroutine.wrap(KULJGKI_fake_script)()
+local function NMJVD_fake_script() -- slowdown.LocalScript 
 	local script = Instance.new('LocalScript', slowdown)
 
 	-- Variables
@@ -315,6 +315,4 @@ local function ODIHEOF_fake_script() -- slowdown.LocalScript
 	-- Connect the button click to the function
 	button.MouseButton1Click:Connect(slowDownAllCarts)
 end
-	
-	
-end
+coroutine.wrap(NMJVD_fake_script)()
