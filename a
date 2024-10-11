@@ -19,36 +19,6 @@ wait(5) --real
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Cart Ride Into Rdite", "Ocean")
 
---DRAG
--- Add dragging functionality for mobile
-local function makeDraggable(frame)
-	local userInputService = game:GetService("UserInputService")
-	local dragging = false
-	local dragStart = nil
-	local startPos = nil
-
-	frame.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = frame.Position
-		end
-	end)
-
-	userInputService.TouchMoved:Connect(function(input)
-		if dragging then
-			local delta = input.Position - dragStart
-			frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		end
-	end)
-
-	userInputService.TouchEnded:Connect(function()
-		dragging = false
-	end)
-end
-
--- Call the function on your window
-makeDraggable(Window)
 
 -- Rest of your script...
 
@@ -773,3 +743,32 @@ end)
 SettingGUI:NewKeybind("Toggle", "Shows/Hides GUI when button has been pressed", Enum.KeyCode.LeftAlt, function()
 	Library:ToggleUI()
 end)
+
+local function makeDraggable(frame)
+	local userInputService = game:GetService("UserInputService")
+	local dragging = false
+	local dragStart = nil
+	local startPos = nil
+
+	frame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = frame.Position
+		end
+	end)
+
+	userInputService.TouchMoved:Connect(function(input)
+		if dragging then
+			local delta = input.Position - dragStart
+			frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		end
+	end)
+
+	userInputService.TouchEnded:Connect(function()
+		dragging = false
+	end)
+end
+
+-- Make the Window draggable
+makeDraggable(Window)
