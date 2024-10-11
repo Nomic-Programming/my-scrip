@@ -10,14 +10,14 @@ print("ok cart game troll GUI loaded lmao") --remove if you want
 --yeah
 local inviteModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 inviteModule.Prompt({
-	name = "Nomic's Script Playground",
+	name = "m",
 	invite = "https://discord.gg/ntts",
 })
 
 wait(5) --real
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/movable%20kavo"))()
-local Window = Library.CreateLib("Cart Ride Into Rdite", "BloodTheme")
+local Window = Library.CreateLib("Cart Ride Into Redface", "BloodTheme")
 
 --TABS
 local Cart = Window:NewTab("Carts")
