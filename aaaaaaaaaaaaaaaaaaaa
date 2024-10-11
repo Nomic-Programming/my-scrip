@@ -41,10 +41,12 @@ local function onButtonClick()
             if upButton and upButton:IsA("Part") then
                 local clickPart = upButton:FindFirstChild("Click")
                 if clickPart then
-                    -- Ensure the script that handles speed is invoked correctly
-                    local chngScript = clickPart:FindFirstChild("Script")
+                    local chngScript = clickPart:FindFirstChildWhichIsA("Script") -- Find the script that contains the function
                     if chngScript then
-                        chngScript:Invoke() -- Invoke the chng function
+                        local chngFunction = chngScript:FindFirstChild("chng") -- Make sure the function is named correctly
+                        if chngFunction then
+                            chngFunction:Invoke() -- Call the function
+                        end
                     end
                 end
             end
