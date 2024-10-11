@@ -16,23 +16,24 @@ local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
 button.Position = UDim2.new(0.5, -100, 0.5, -25)
 button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-button.Text = "Press All 'Up' Buttons"
+button.Text = "Speed Up All Carts"
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.Font = Enum.Font.SourceSans
 button.TextSize = 24
 button.Parent = frame
 
--- Function to press all "Up" buttons
+-- Function to call the change speed function
 local function onButtonClick()
     for _, cart in pairs(workspace:GetChildren()) do
         if cart:IsA("Model") then
             local upButton = cart:FindFirstChild("Up")
             if upButton and upButton:IsA("Part") then
-                local clickPart = upButton:FindFirstChild("Click") -- Ensure the Click part exists
-                if clickPart then
-                    local clickDetector = clickPart:FindFirstChildOfClass("ClickDetector") -- Adjust if needed
-                    if clickDetector then
-                        clickDetector:Fire() -- Simulate clicking
+                local clickPart = upButton:FindFirstChild("Click")
+                if clickPart and clickPart:IsA("Part") then
+                    -- Call the chng function directly
+                    local chngFunction = clickPart:FindFirstChild("Script")
+                    if chngFunction then
+                        chngFunction:Invoke() -- Call the chng function
                     end
                 end
             end
