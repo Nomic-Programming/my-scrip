@@ -1,4 +1,5 @@
 local player = game.Players.LocalPlayer
+local maxDistance = 10000000  -- 10 million studs
 
 -- Create a ScreenGui
 local screenGui = Instance.new("ScreenGui")
@@ -15,7 +16,11 @@ button.Parent = screenGui
 local function speedUpAllCarts()
     for _, cart in pairs(workspace:GetDescendants()) do
         if cart.Name == "Up" and cart:FindFirstChild("Click") then
-            fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
+            -- Check distance to the player
+            local distance = (cart.Position - player.Character.HumanoidRootPart.Position).magnitude
+            if distance <= maxDistance then
+                fireclickdetector(cart.Click)  -- Fires the click detector to speed up the cart
+            end
         end
     end
     
