@@ -1,83 +1,134 @@
--- Create ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "MyGui"
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+--[[
+Welcome, intrepid coder! The shadows of the digital realm whisper secrets only the bold can unravel. 
+This script shall be your guide through the treacherous landscapes of "Cart Ride Into Rdite."
+Stay vigilant; the world is ever-changing, and with great power comes great mischief. 
+]]--
 
--- Create a Frame for layout
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 400, 0, 250)
-frame.Position = UDim2.new(0.5, -200, 0.5, -125)
-frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-frame.BackgroundTransparency = 0.5
-frame.Parent = screenGui
+print("🚀 Adventure awaits: Cart game troll GUI has emerged!")
 
--- Create a TextButton to speed up carts
-local button = Instance.new("TextButton")
-button.Size = UDim2.new(0, 250, 0, 50)
-button.Position = UDim2.new(0.5, -125, 0.5, -25)
-button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-button.Text = "Speed Up All Carts!"
-button.TextColor3 = Color3.fromRGB(255, 255, 255)
-button.Font = Enum.Font.SourceSansBold
-button.TextSize = 24
-button.Parent = frame
+local inviteModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+inviteModule.Prompt({
+    name = "The Coder's Guild",
+    invite = "https://discord.gg/ucxgy9r7ck",
+})
 
--- Create an "X" button to close the GUI
-local closeButton = Instance.new("TextButton")
-closeButton.Size = UDim2.new(0, 50, 0, 50)
-closeButton.Position = UDim2.new(1, -60, 0, 10)
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-closeButton.Text = "X"
-closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeButton.Font = Enum.Font.SourceSans
-closeButton.TextSize = 24
-closeButton.Parent = frame
+wait(5) -- Allow the digital spirits to align...
 
--- Function to speed up all carts with dramatic effects
-local function onButtonClick()
-    local speedIncrease = 3
-    local cartCount = 0
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/AAD", true))()
+local Window = Library.CreateLib("Cart Ride Into Rdite - The Ascendancy", "DarkTheme")
 
-    for _, cart in pairs(workspace:GetChildren()) do
-        if cart:IsA("Model") then
-            local upButton = cart:FindFirstChild("Up")
-            if upButton and upButton:IsA("Part") then
-                local clickPart = upButton:FindFirstChild("Click")
-                if clickPart then
-                    local chngScript = clickPart:FindFirstChildWhichIsA("Script")
-                    if chngScript then
-                        local chngFunction = chngScript:FindFirstChild("chng")
-                        if chngFunction then
-                            chngFunction:Invoke() -- Invoke the speed change function
-                            cartCount += 1
-                        end
-                    end
+-- TABS OF FATE
+local Cart = Window:NewTab("Carts of Chaos")
+local Plr = Window:NewTab("Player's Ascent")
+local Misc = Window:NewTab("Mystical Odds")
+local Setting = Window:NewTab("Info & Configuration")
+
+-- SECTIONS WITHIN TABS
+local CartMain = Cart:NewSection("Cart Manipulation")
+local AutoCart = Cart:NewSection("Automated Havoc")
+
+local PlrMod = Plr:NewSection("Player Enhancement")
+local PlrTP = Plr:NewSection("Teleportation Paths")
+
+local Random = Misc:NewSection("Random Conjurations")
+
+local SettingGUI = Setting:NewSection("GUI Control")
+local SettingConfig = Setting:NewSection("Configuration Settings")
+
+-- CART TAB OF CHAOS BEGINS
+CartMain:NewButton("Summon All Carts", "Invoke the spirits of all carts!", function()
+    for _, v in pairs(game.workspace:GetDescendants()) do
+        if v.Name == "Regen" then
+            fireclickdetector(v.Click)
+        end
+    end
+end)
+
+CartMain:NewButton("Accelerate All Carts", "Unleash their true speed!", function()
+    for _, v in pairs(game.workspace:GetDescendants()) do
+        if v.Name == "Up" then
+            fireclickdetector(v.Click)
+        end
+    end
+end)
+
+CartMain:NewToggle("Speed Aura", "Empower nearby carts with swiftness!", function(tog)
+    if tog then
+        _G.SpeedAura = true
+        while _G.SpeedAura do
+            wait(0.1)
+            for _, v in pairs(game.workspace:GetDescendants()) do
+                if v.Name == "Up" and (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 15 then
+                    fireclickdetector(v.Click)
                 end
             end
         end
-    end
-
-    -- Dramatic feedback
-    if cartCount > 0 then
-        button.Text = "Carts Speeding Up!"
-        button.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
-        wait(1)
-        button.Text = "Speed Up All Carts!"
-        button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
     else
-        button.Text = "No Carts Found!"
-        button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-        wait(1)
-        button.Text = "Speed Up All Carts!"
-        button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        _G.SpeedAura = false
     end
-end
+end)
 
--- Function to close the GUI
-local function onCloseButtonClick()
-    screenGui:Destroy() -- Remove the GUI
-end
+CartMain:NewTextBox("Target Player", "Invoke chaos upon a chosen player", function(txt)
+    local player = game.Players.LocalPlayer
+    for _, v in pairs(game.Players:GetChildren()) do
+        if string.sub(string.lower(v.Name), 1, string.len(txt)) == string.lower(txt) then
+            txt = v.Name
+        end
+    end
 
--- Connect the button clicks to their functions
-button.MouseButton1Click:Connect(onButtonClick)
-closeButton.MouseButton1Click:Connect(onCloseButtonClick)
+    -- Chaos spell targeting the chosen player...
+    local char = game.Players[txt].Character
+    for _, v in pairs(game.workspace:GetDescendants()) do
+        if v.Name == "Up" and (v.Position - char.HumanoidRootPart.Position).Magnitude < 15 then
+            fireclickdetector(v.Click)
+        end
+    end
+end)
+
+-- PLAYER TAB OF ASCENT BEGINS
+PlrMod:NewButton("Teleportation Tool", "Channel your essence to a distant realm!", function()
+    local mouse = game.Players.LocalPlayer:GetMouse()
+    local tool = Instance.new("Tool")
+    tool.RequiresHandle = false
+    tool.Name = "Teleportation Staff"
+    tool.Activated:connect(function()
+        local pos = mouse.Hit + Vector3.new(0, 2.5, 0)
+        pos = CFrame.new(pos.X, pos.Y, pos.Z)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+    end)
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+PlrMod:NewButton("Infinite Jump", "Defy gravity with eternal leaps!", function()
+    _G.InfiniteJump = true
+    local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+    mouse.KeyDown:connect(function(k)
+        if _G.InfiniteJump and k:byte() == 32 then
+            local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+            humanoid:ChangeState("Jumping")
+        end
+    end)
+end)
+
+-- MISC TAB OF MYSTICAL ODDS BEGINS
+Random:NewButton("Admin Powers", "Unlock the ancient IY Admin!", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+Random:NewButton("Victory Spell", "Claim your triumph without toil!", function()
+    local hitter = game.Players.LocalPlayer.Character.HumanoidRootPart
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "SpawnLocation" then
+            firetouchinterest(hitter, v, 0)
+            wait(0.1)
+            firetouchinterest(hitter, v, 1)
+        end
+    end
+end)
+
+SettingGUI:NewKeybind("Toggle GUI", "Summon or banish the GUI with a flick of your finger.", Enum.KeyCode.LeftAlt, function()
+    Library:ToggleUI()
+end)
+
+-- Let the adventure begin, brave coder!
