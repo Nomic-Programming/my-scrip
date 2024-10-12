@@ -17,16 +17,16 @@ OpenButton.Parent = ToggleSwitch
 OpenButton.BackgroundColor3 = Color3.fromRGB(255, 116, 116)
 OpenButton.BorderColor3 = Color3.fromRGB(255, 0, 0)
 OpenButton.BorderSizePixel = 2
-OpenButton.Position = UDim2.new(0.0368466154, 0, 0.41564247, 0)
-OpenButton.Size = UDim2.new(0, 124, 0, 107)
+OpenButton.Position = UDim2.new(0.0411311053, 0, 0.536981404, 0)
+OpenButton.Size = UDim2.new(0, 75, 0, 75)
 OpenButton.Font = Enum.Font.SourceSans
 OpenButton.Text = "Close"
 OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-OpenButton.TextSize = 40.000
+OpenButton.TextSize = 30.000
 
 -- Scripts:
 
-local function OMFJZO_fake_script() -- OpenButton.LocalScript 
+local function IIBYPFA_fake_script() -- OpenButton.LocalScript 
 	local script = Instance.new('LocalScript', OpenButton)
 
 	-- Ensure the LocalScript is a child of a TextLabel
@@ -84,4 +84,4 @@ local function OMFJZO_fake_script() -- OpenButton.LocalScript
 	Button.Active = true
 	
 end
-coroutine.wrap(OMFJZO_fake_script)()
+coroutine.wrap(IIBYPFA_fake_script)()
