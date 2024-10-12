@@ -1,0 +1,38 @@
+-- ModuleScript (Library.lua)
+local Module = {}
+
+-- Function to show the prompt with invite link and optional server name
+function Module.Prompt(data)
+    -- Ensure "invite" is provided
+    if not data.invite then
+        error("Invite link is required!")
+    end
+
+    -- Create the prompt frame
+    local promptFrame = Instance.new("Frame")
+    promptFrame.Size = UDim2.new(0, 300, 0, 150)
+    promptFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    promptFrame.Parent = script.Parent -- Assuming this is within a ScreenGui
+
+    -- Title Label
+    local titleLabel = Instance.new("TextLabel", promptFrame)
+    titleLabel.Text = "Server Invite"
+    titleLabel.Size = UDim2.new(1, 0, 0, 50)
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+    -- Display the server name if provided
+    local serverLabel = Instance.new("TextLabel", promptFrame)
+    serverLabel.Size = UDim2.new(1, 0, 0, 50)
+    serverLabel.Position = UDim2.new(0, 0, 0, 50)
+    serverLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    serverLabel.Text = data.name and ("Server: " .. data.name) or "No server name provided"
+
+    -- Display the invite link
+    local inviteLabel = Instance.new("TextLabel", promptFrame)
+    inviteLabel.Size = UDim2.new(1, 0, 0, 50)
+    inviteLabel.Position = UDim2.new(0, 0, 0, 100)
+    inviteLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+    inviteLabel.Text = "Invite Link: " .. data.invite
+end
+
+return Module
