@@ -1,127 +1,215 @@
--- Gui to Lua
--- Version: 3.2
+-- Services
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+local CoreGui = game:GetService("CoreGui")
 
--- Instances:
+-- Variables
+local module = {}
+local assets = {
+    DiscordInvitePrompt = loadstring(game:HttpGet("https://github.com/RegularVynixu/Utilities/raw/main/Discord%20Inviter/Assets/DiscordInvitePrompt.rbxm"))(),
+    NotificationSound = "rbxassetid://INSERT_SOUND_ID" -- Replace with appropriate sound asset ID
+}
 
-local Inviter = Instance.new("ScreenGui")
-local InviteGUI = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local ServerIcon = Instance.new("ImageLabel")
-local UICorner_2 = Instance.new("UICorner")
-local invited = Instance.new("TextLabel")
-local Servername = Instance.new("TextLabel")
-local accept = Instance.new("TextButton")
-local UICorner_3 = Instance.new("UICorner")
-local decline = Instance.new("TextButton")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-
--- Function to get the server icon from the invite link
-local function getServerIcon(inviteLink)
-    -- Extract the server ID from the invite link
-    local serverID = inviteLink:match("discord%.gg/(%w+)")
-    if serverID then
-        -- Get the server icon from Discord's API; this assumes you have the correct icon hash
-        return "https://cdn.discordapp.com/icons/" .. serverID .. "/icon.png"
-    end
-    return "rbxasset://textures/ui/GuiImagePlaceholder.png" -- Fallback image if extraction fails
+-- Helper Functions
+local function loadCustomAsset(url)
+    -- Implement your logic to load custom assets here (e.g., using AssetService)
+    return url -- Placeholder; adjust as needed
 end
 
---Properties:
+local function request(options)
+    local response = HttpService:RequestAsync(options)
+    return response
+end
 
-Inviter.Name = "Inviter"
-Inviter.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-Inviter.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local function getInviteCode(sInvite)
+    return sInvite:match("/([%w%-]+)$") or sInvite
+end
 
-InviteGUI.Name = "InviteGUI"
-InviteGUI.Parent = Inviter
-InviteGUI.BackgroundColor3 = Color3.fromRGB(49, 51, 56)
-InviteGUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
-InviteGUI.BorderSizePixel = 0
-InviteGUI.Position = UDim2.new(0.5, -106, 0.5, -130) -- Centering the GUI
-InviteGUI.Size = UDim2.new(0, 212, 0, 260)
+local function getInviteData(sInvite)
+    local code = getInviteCode(sInvite)
+    local url = "https://discord.com/api/invites/" .. code
+    local success, result = pcall(function()
+        return HttpService:JSONDecode(request({ Url = url, Method = "GET" }).Body)
+    end)
 
-UICorner.Parent = InviteGUI
+    if not success then
+        warn("Failed to get invite data:\n" .. result)
+        return nil
+    end
 
-ServerIcon.Name = "ServerIcon"
-ServerIcon.Parent = InviteGUI
-ServerIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ServerIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ServerIcon.BorderSizePixel = 0
-ServerIcon.Position = UDim2.new(0.5, -50, 0.1, 0) -- Centered
-ServerIcon.Size = UDim2.new(0, 100, 0, 100)
+    return result
+end
 
--- Fetch the server icon from the invite link (Replace with actual invite link)
-local inviteLink = "discord.gg/yourInviteCode" -- Replace with your actual invite link
-ServerIcon.Image = getServerIcon(inviteLink) -- Get the server icon
+local function getInitials(name)
+    local initials = ""
+    for word in name:gmatch("%S+") do
+        initials = initials .. word:sub(1, 1)
+    end
+    return initials:sub(1, 3)
+end
 
-UICorner_2.CornerRadius = UDim.new(0, 15)
-UICorner_2.Parent = ServerIcon
+local function make(class, properties)
+    local object = Instance.new(class)
+    for key, value in pairs(properties) do
+        object[key] = value
+    end
+    return object
+end
 
-invited.Name = "invited"
-invited.Parent = InviteGUI
-invited.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-invited.BackgroundTransparency = 1.000
-invited.BorderColor3 = Color3.fromRGB(0, 0, 0)
-invited.BorderSizePixel = 0
-invited.Position = UDim2.new(0.094339624, 0, 0.461538464, 0)
-invited.Size = UDim2.new(0, 170, 0, 34)
-invited.Font = Enum.Font.SourceSans
-invited.Text = "You've been invited to join"
-invited.TextColor3 = Color3.fromRGB(214, 214, 214)
-invited.TextScaled = true
-invited.TextSize = 14.000
-invited.TextWrapped = true
+local function toggleShowPrompt(promptGui, isVisible)
+    local frame = promptGui.Holder
+    local serverIcon = frame.ServerIcon
+    local serverInitials = serverIcon.ServerInitials
+    local invited = frame.Invited
+    local serverName = frame.ServerName
+    local accept = frame.Accept
+    local ignore = frame.Ignore
 
-Servername.Name = "Servername"
-Servername.Parent = InviteGUI
-Servername.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Servername.BackgroundTransparency = 1.000
-Servername.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Servername.BorderSizePixel = 0
-Servername.Position = UDim2.new(0.0518867932, 0, 0.557692289, 0)
-Servername.Size = UDim2.new(0, 191, 0, 50)
-Servername.Font = Enum.Font.SourceSans
-Servername.Text = "SERVERNAME"
-Servername.TextColor3 = Color3.fromRGB(255, 255, 255)
-Servername.TextScaled = true
-Servername.TextSize = 14.000
-Servername.TextWrapped = true
+    if isVisible then
+        frame.Visible = true
+        TweenService:Create(frame, TweenInfo.new(1, Enum.EasingStyle.Quint), { Size = UDim2.new(0.175, 0, 0.175, 0) }):Play()
+        TweenService:Create(frame.UICorner, TweenInfo.new(1, Enum.EasingStyle.Quint), { CornerRadius = UDim.new(0, 8) }):Play()
+        task.wait(1)
+        TweenService:Create(serverIcon, TweenInfo.new(1, Enum.EasingStyle.Quint), { BackgroundTransparency = 0, ImageTransparency = 0 }):Play()
+        TweenService:Create(serverInitials, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 0 }):Play()
+        task.wait(0.1)
+        TweenService:Create(invited, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 0 }):Play()
+        task.wait(0.1)
+        TweenService:Create(serverName, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 0 }):Play()
+        task.wait(0.1)
+        TweenService:Create(accept, TweenInfo.new(1, Enum.EasingStyle.Quint), { BackgroundTransparency = 0, TextTransparency = 0 }):Play()
+        task.wait(0.1)
+        TweenService:Create(ignore, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 0 }):Play()
+        task.wait(1)
+    else
+        TweenService:Create(ignore, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        task.wait(0.1)
+        TweenService:Create(accept, TweenInfo.new(1, Enum.EasingStyle.Quint), { BackgroundTransparency = 1, TextTransparency = 1 }):Play()
+        task.wait(0.1)
+        TweenService:Create(serverName, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        task.wait(0.1)
+        TweenService:Create(invited, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        task.wait(0.1)
+        TweenService:Create(serverIcon, TweenInfo.new(1, Enum.EasingStyle.Quint), { BackgroundTransparency = 1, ImageTransparency = 1 }):Play()
+        TweenService:Create(serverInitials, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        task.wait(1)
+        TweenService:Create(frame, TweenInfo.new(1, Enum.EasingStyle.Quint), { Size = UDim2.new() }):Play()
+        TweenService:Create(frame.UICorner, TweenInfo.new(1, Enum.EasingStyle.Quint), { CornerRadius = UDim.new(1, 0) }):Play()
+        task.wait(1)
+        frame.Visible = false
+    end
+end
 
-accept.Name = "accept"
-accept.Parent = InviteGUI
-accept.BackgroundColor3 = Color3.fromRGB(93, 109, 255)
-accept.BorderColor3 = Color3.fromRGB(0, 0, 0)
-accept.BorderSizePixel = 0
-accept.Position = UDim2.new(0.0518867932, 0, 0.75, 0)
-accept.Size = UDim2.new(0, 191, 0, 35)
-accept.Font = Enum.Font.SourceSans
-accept.Text = "Accept Invite"
-accept.TextColor3 = Color3.fromRGB(255, 255, 255)
-accept.TextSize = 20.000
+-- Module Functions
+module.Prompt = function(inviteTable)
+    assert(type(inviteTable) == "table", "<table> Invalid invite table")
+    assert(type(inviteTable.name) == "string", "<string> Invalid invite name")
+    assert(type(inviteTable.invite) == "string", "<string> Invalid invite code")
+    
+    local invite = inviteTable.invite
+    local inviteData = getInviteData(invite)
+    
+    if inviteData then
+        local promptGui = assets.DiscordInvitePrompt:Clone()
+        local holder = promptGui.Holder
+        local serverIcon = holder.ServerIcon
+        local serverInitials = serverIcon.ServerInitials
+        local invited = holder.Invited
+        local serverName = holder.ServerName
+        local accept = holder.Accept
+        local ignore = holder.Ignore
+        
+        holder.Size = UDim2.new()
+        holder.UICorner.CornerRadius = UDim.new(1, 0)
+        serverName.Text = inviteTable.name
+        accept.Text = "Join <b>" .. inviteTable.name .. "</b>"
+        
+        if inviteData.guild and inviteData.guild.icon then
+            serverIcon.Image = loadCustomAsset("https://cdn.discordapp.com/icons/" .. inviteData.guild.id .. "/" .. inviteData.guild.icon .. ".png")
+        else
+            serverInitials.Text = getInitials(inviteTable.name)
+            serverInitials.Visible = true
+        end
+        
+        for _, c in holder:GetDescendants() do
+            if c:IsA("TextLabel") or c:IsA("TextButton") then
+                c.BackgroundTransparency = 1
+                c.TextTransparency = 1
+            elseif c:IsA("ImageLabel") then
+                c.ImageTransparency = 1
+            end
+        end
 
-UICorner_3.Parent = accept
+        -- Display the prompt
+        promptGui.Parent = CoreGui
+        toggleShowPrompt(promptGui, true)
 
-decline.Name = "decline"
-decline.Parent = InviteGUI
-decline.BackgroundColor3 = Color3.fromRGB(93, 109, 255)
-decline.BackgroundTransparency = 1.000
-decline.BorderColor3 = Color3.fromRGB(0, 0, 0)
-decline.BorderSizePixel = 0
-decline.Position = UDim2.new(0.127358496, 0, 0.907692313, 0)
-decline.Size = UDim2.new(0, 158, 0, 15)
-decline.Font = Enum.Font.SourceSans
-decline.Text = "No Thanks, just load the script"
-decline.TextColor3 = Color3.fromRGB(255, 255, 255)
-decline.TextScaled = true
-decline.TextSize = 20.000
-decline.TextWrapped = true
+        -- Event connections for user interaction
+        local connections = {}
+        local function dismiss(join)
+            for _, c in connections do
+                c:Disconnect()
+            end
+            if join then
+                module.Join(invite)
+            end
+            toggleShowPrompt(promptGui, false)
+        end
 
-UIAspectRatioConstraint.Parent = InviteGUI
-UIAspectRatioConstraint.AspectRatio = 1.888
+        connections.acceptActivated = accept.Activated:Connect(function()
+            dismiss(true)
+        end)
+        
+        connections.ignoreActivated = ignore.Activated:Connect(function()
+            dismiss(false)
+        end)
 
--- Example usage (This can be triggered based on an event)
-local exampleInviteLink = "discord.gg/yourInviteCode" -- Replace with your actual invite link
-ServerIcon.Image = getServerIcon(exampleInviteLink) -- Load the server icon
+        accept.MouseEnter:Connect(function()
+            TweenService:Create(accept, TweenInfo.new(0.15), { BackgroundColor3 = Color3.fromRGB(71, 82, 196) }):Play()
+        end)
+        accept.MouseLeave:Connect(function()
+            TweenService:Create(accept, TweenInfo.new(0.15), { BackgroundColor3 = Color3.fromRGB(88, 101, 242) }):Play()
+        end)
 
--- Optional: Set server name based on the invite link or provide a default
-Servername.Text = "SERVERNAME" -- You can customize this based on server information
+        ignore.MouseEnter:Connect(function()
+            ignore.Text = "<u>" .. ignore.Text .. "</u>"
+        end)
+        ignore.MouseLeave:Connect(function()
+            ignore.Text = ignore.Text:gsub("<u>", ""):gsub("</u>", "")
+        end)
+    end
+end
+
+module.Join = function(sInvite)
+    assert(type(sInvite) == "string", "<string> Invalid invite provided")
+    
+    local inviteData = getInviteData(sInvite)
+    if inviteData then
+        request({
+            Url = "http://127.0.0.1:6463/rpc?v=1",
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json",
+                ["Origin"] = "https://discord.com"
+            },
+            Body = HttpService:JSONEncode({
+                cmd = "INVITE_BROWSER",
+                args = {
+                    code = inviteData.code
+                },
+                nonce = HttpService:GenerateGUID(false)
+            })
+        })
+        
+        -- Play notification sound
+        local sound = Instance.new("Sound")
+        sound.Volume = 1
+        sound.SoundId = assets.NotificationSound
+        sound.PlayOnRemove = true
+        sound.Parent = CoreGui
+        sound:Destroy()
+    end
+end
+
+-- Main
+return module
