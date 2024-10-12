@@ -1,0 +1,189 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Promotion = Instance.new("ScreenGui")
+local PromotionGUI = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Subscribe = Instance.new("ImageButton")
+local UICorner_2 = Instance.new("UICorner")
+local Channel_Icon = Instance.new("ImageLabel")
+local UICorner_3 = Instance.new("UICorner")
+local ChannelName = Instance.new("TextLabel")
+local CopiedToClipboard = Instance.new("ImageButton")
+local UICorner_4 = Instance.new("UICorner")
+local Decline = Instance.new("TextButton")
+local key = Instance.new("Frame")
+local UICorner_5 = Instance.new("UICorner")
+local hhas = Instance.new("TextLabel")
+local box = Instance.new("TextBox")
+local enter = Instance.new("TextButton")
+
+--Properties:
+
+Promotion.Name = "Promotion"
+Promotion.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Promotion.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Promotion.ResetOnSpawn = false
+
+PromotionGUI.Name = "PromotionGUI"
+PromotionGUI.Parent = Promotion
+PromotionGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PromotionGUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+PromotionGUI.BorderSizePixel = 0
+PromotionGUI.Position = UDim2.new(0.349778712, 0, 0.121488355, 0)
+PromotionGUI.Size = UDim2.new(0, 220, 0, 270)
+PromotionGUI.Visible = false
+
+UICorner.Parent = PromotionGUI
+
+Subscribe.Name = "Subscribe"
+Subscribe.Parent = PromotionGUI
+Subscribe.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Subscribe.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Subscribe.BorderSizePixel = 0
+Subscribe.Position = UDim2.new(0.0545454547, 0, 0.681481481, 0)
+Subscribe.Size = UDim2.new(0, 195, 0, 49)
+Subscribe.Image = "rbxassetid://88294884147929"
+
+UICorner_2.Parent = Subscribe
+
+Channel_Icon.Name = "Channel_Icon"
+Channel_Icon.Parent = PromotionGUI
+Channel_Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Channel_Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Channel_Icon.BorderSizePixel = 0
+Channel_Icon.Position = UDim2.new(0.268181831, 0, 0.088888891, 0)
+Channel_Icon.Size = UDim2.new(0, 100, 0, 100)
+Channel_Icon.Image = "rbxassetid://127760348739155"
+
+UICorner_3.CornerRadius = UDim.new(0, 1005423)
+UICorner_3.Parent = Channel_Icon
+
+ChannelName.Name = "ChannelName"
+ChannelName.Parent = PromotionGUI
+ChannelName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ChannelName.BackgroundTransparency = 1.000
+ChannelName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ChannelName.BorderSizePixel = 0
+ChannelName.Position = UDim2.new(0.0954545438, 0, 0.5, 0)
+ChannelName.Size = UDim2.new(0, 177, 0, 32)
+ChannelName.Font = Enum.Font.Roboto
+ChannelName.Text = "Redface :1"
+ChannelName.TextColor3 = Color3.fromRGB(0, 0, 0)
+ChannelName.TextScaled = true
+ChannelName.TextSize = 14.000
+ChannelName.TextWrapped = true
+
+CopiedToClipboard.Name = "CopiedToClipboard"
+CopiedToClipboard.Parent = PromotionGUI
+CopiedToClipboard.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CopiedToClipboard.BorderColor3 = Color3.fromRGB(0, 0, 0)
+CopiedToClipboard.BorderSizePixel = 0
+CopiedToClipboard.Position = UDim2.new(0.0545454547, 0, 0.681481481, 0)
+CopiedToClipboard.Size = UDim2.new(0, 195, 0, 49)
+CopiedToClipboard.Visible = false
+CopiedToClipboard.Image = "rbxassetid://116408435789718"
+
+UICorner_4.Parent = CopiedToClipboard
+
+Decline.Name = "Decline"
+Decline.Parent = PromotionGUI
+Decline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Decline.BackgroundTransparency = 1.000
+Decline.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Decline.BorderSizePixel = 0
+Decline.Position = UDim2.new(0.0545454547, 0, 0.896296382, 0)
+Decline.Size = UDim2.new(0, 196, 0, 22)
+Decline.Font = Enum.Font.Roboto
+Decline.Text = "No Thanks, just bring me to the script."
+Decline.TextColor3 = Color3.fromRGB(0, 0, 0)
+Decline.TextScaled = true
+Decline.TextSize = 14.000
+Decline.TextWrapped = true
+
+key.Name = "key"
+key.Parent = Promotion
+key.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+key.BorderColor3 = Color3.fromRGB(0, 0, 0)
+key.BorderSizePixel = 0
+key.Position = UDim2.new(0.349614382, 0, 0.121169917, 0)
+key.Size = UDim2.new(0, 220, 0, 270)
+
+UICorner_5.Parent = key
+
+hhas.Name = "hhas"
+hhas.Parent = key
+hhas.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+hhas.BorderColor3 = Color3.fromRGB(0, 0, 0)
+hhas.BorderSizePixel = 0
+hhas.Position = UDim2.new(0.0454545468, 0, 0.107407406, 0)
+hhas.Size = UDim2.new(0, 200, 0, 50)
+hhas.Font = Enum.Font.SourceSans
+hhas.Text = "key haha"
+hhas.TextColor3 = Color3.fromRGB(0, 0, 0)
+hhas.TextSize = 14.000
+
+box.Name = "box"
+box.Parent = key
+box.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+box.BorderColor3 = Color3.fromRGB(0, 0, 0)
+box.BorderSizePixel = 0
+box.Position = UDim2.new(0.0454545468, 0, 0.348148137, 0)
+box.Size = UDim2.new(0, 200, 0, 50)
+box.Font = Enum.Font.SourceSans
+box.PlaceholderText = "type key here"
+box.Text = ""
+box.TextColor3 = Color3.fromRGB(255, 255, 255)
+box.TextSize = 14.000
+
+enter.Name = "enter"
+enter.Parent = key
+enter.BackgroundColor3 = Color3.fromRGB(206, 206, 206)
+enter.BorderColor3 = Color3.fromRGB(0, 0, 0)
+enter.BorderSizePixel = 0
+enter.Position = UDim2.new(0.0454545468, 0, 0.714814842, 0)
+enter.Size = UDim2.new(0, 200, 0, 50)
+enter.Font = Enum.Font.SourceSans
+enter.Text = "enter"
+enter.TextColor3 = Color3.fromRGB(0, 0, 0)
+enter.TextSize = 14.000
+
+-- Scripts:
+
+local function OMFJZO_fake_script() -- Subscribe.LocalScript 
+	local script = Instance.new('LocalScript', Subscribe)
+
+	script.Parent.Activated:Connect(function()
+		script.Parent.Visible = false
+		script.Parent.Parent.CopiedToClipboard.Visible = true
+		setclipboard("https://www.youtube.com/@RedfaceRedface")
+		wait(1.5)
+		script.Parent.Parent.Parent.Parent.Promotion:Destroy()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/Attem",true))()
+	end)
+end
+coroutine.wrap(OMFJZO_fake_script)()
+local function UVNMJ_fake_script() -- Decline.LocalScript 
+	local script = Instance.new('LocalScript', Decline)
+
+	script.Parent.Activated:Connect(function()
+		script.Parent.Parent.Parent.Parent.Promotion:Destroy()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/Attem",true))()
+	end)
+	
+end
+coroutine.wrap(UVNMJ_fake_script)()
+local function DGLPX_fake_script() -- enter.LocalScript 
+	local script = Instance.new('LocalScript', enter)
+
+	script.Parent.MouseButton1Down:Connect(function()
+		if script.Parent.Parent.box.Text == "2763" then
+			script.Parent.Parent.Parent.PromotionGUI.Visible = true
+		else
+			game.Players.LocalPlayer:kick("wrong!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		end
+	end)
+end
+coroutine.wrap(DGLPX_fake_script)()
