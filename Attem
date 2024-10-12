@@ -737,6 +737,6 @@ Random:NewTextBox("View Player", "Can be shortened", function(txt)
 	end
 end)
 
-SettingGUI:NewKeybind("Toggle", "Shows/Hides GUI when button has been pressed", Enum.KeyCode.LeftAlt, function()
-	Library:ToggleUI()
+SettingGUI:NewKeybind("Toggle GUI", "Toggles the GUI.", Enum.KeyCode.F6, function()
+    Library:ToggleUI()
 end)
