@@ -1,4 +1,4 @@
-local Module = loadstring(game:HttpGet("https://your-hosted-library-url-here"))()
+local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/mcdonalds2"))()
 
 Module.Prompt({
     invite = "discord.gg/ntts", -- required
