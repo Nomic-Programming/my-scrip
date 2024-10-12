@@ -6,7 +6,8 @@ local function getServerIcon(inviteLink)
     -- Extract the server ID from the invite link
     local serverID = inviteLink:match("discord%.gg/(%w+)")
     if serverID then
-        return "https://cdn.discordapp.com/icons/" .. serverID .. "/icon.png"
+        local icon = "https://cdn.discordapp.com/icons/" .. serverID .. "/icon.png"
+        return icon
     end
     return "rbxasset://textures/ui/GuiImagePlaceholder.png" -- Default image if extraction fails
 end
@@ -58,7 +59,7 @@ function Module.Prompt(data)
     invited.Name = "invited"
     invited.Parent = InviteGUI
     invited.BackgroundTransparency = 1.000
-    invited.Position = UDim2.new(0.094339624, 0, 0.461538464, 0)
+    invited.Position = UDim2.new(0.5, -85, 0.5, -20) -- Centered
     invited.Size = UDim2.new(0, 170, 0, 34)
     invited.Font = Enum.Font.SourceSans
     invited.Text = "You've been invited to join"
@@ -69,7 +70,7 @@ function Module.Prompt(data)
     Servername.Name = "Servername"
     Servername.Parent = InviteGUI
     Servername.BackgroundTransparency = 1.000
-    Servername.Position = UDim2.new(0.0518867932, 0, 0.557692289, 0)
+    Servername.Position = UDim2.new(0.5, -95, 0.5, 20) -- Centered
     Servername.Size = UDim2.new(0, 191, 0, 50)
     Servername.Font = Enum.Font.SourceSans
     -- Set the server name, or default text if not provided
