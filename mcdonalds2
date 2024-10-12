@@ -1,38 +1,107 @@
--- ModuleScript (Library.lua)
+-- Library Script (InviteLibrary.lua)
 local Module = {}
 
--- Function to show the prompt with invite link and optional server name
+-- Function to display the invite prompt
 function Module.Prompt(data)
-    -- Ensure "invite" is provided
+    -- Check if "invite" is provided
     if not data.invite then
         error("Invite link is required!")
     end
 
-    -- Create the prompt frame
-    local promptFrame = Instance.new("Frame")
-    promptFrame.Size = UDim2.new(0, 300, 0, 150)
-    promptFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    promptFrame.Parent = script.Parent -- Assuming this is within a ScreenGui
+    -- Create the GUI elements (same as the GUI you provided)
+    local Inviter = Instance.new("ScreenGui")
+    local InviteGUI = Instance.new("Frame")
+    local UICorner = Instance.new("UICorner")
+    local ServerIcon = Instance.new("ImageLabel")
+    local UICorner_2 = Instance.new("UICorner")
+    local invited = Instance.new("TextLabel")
+    local Servername = Instance.new("TextLabel")
+    local accept = Instance.new("TextButton")
+    local UICorner_3 = Instance.new("UICorner")
+    local decline = Instance.new("TextButton")
 
-    -- Title Label
-    local titleLabel = Instance.new("TextLabel", promptFrame)
-    titleLabel.Text = "Server Invite"
-    titleLabel.Size = UDim2.new(1, 0, 0, 50)
-    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    -- GUI Properties (already defined in your original script)
+    Inviter.Name = "Inviter"
+    Inviter.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    Inviter.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-    -- Display the server name if provided
-    local serverLabel = Instance.new("TextLabel", promptFrame)
-    serverLabel.Size = UDim2.new(1, 0, 0, 50)
-    serverLabel.Position = UDim2.new(0, 0, 0, 50)
-    serverLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    serverLabel.Text = data.name and ("Server: " .. data.name) or "No server name provided"
+    InviteGUI.Name = "InviteGUI"
+    InviteGUI.Parent = Inviter
+    InviteGUI.BackgroundColor3 = Color3.fromRGB(49, 51, 56)
+    InviteGUI.BorderSizePixel = 0
+    InviteGUI.Position = UDim2.new(0.408740371, 0, 0.289644003, 0)
+    InviteGUI.Size = UDim2.new(0, 212, 0, 260)
+    
+    UICorner.Parent = InviteGUI
 
-    -- Display the invite link
-    local inviteLabel = Instance.new("TextLabel", promptFrame)
-    inviteLabel.Size = UDim2.new(1, 0, 0, 50)
-    inviteLabel.Position = UDim2.new(0, 0, 0, 100)
-    inviteLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
-    inviteLabel.Text = "Invite Link: " .. data.invite
+    ServerIcon.Name = "ServerIcon"
+    ServerIcon.Parent = InviteGUI
+    ServerIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ServerIcon.Size = UDim2.new(0, 100, 0, 100)
+    ServerIcon.Position = UDim2.new(0.264150947, 0, 0.0769230798, 0)
+    -- Use the server image provided, or a default placeholder if not given
+    ServerIcon.Image = data.image or "rbxasset://textures/ui/GuiImagePlaceholder.png"
+
+    UICorner_2.CornerRadius = UDim.new(0, 15)
+    UICorner_2.Parent = ServerIcon
+
+    invited.Name = "invited"
+    invited.Parent = InviteGUI
+    invited.BackgroundTransparency = 1.000
+    invited.Position = UDim2.new(0.094339624, 0, 0.461538464, 0)
+    invited.Size = UDim2.new(0, 170, 0, 34)
+    invited.Font = Enum.Font.SourceSans
+    invited.Text = "You've been invited to join"
+    invited.TextColor3 = Color3.fromRGB(214, 214, 214)
+    invited.TextScaled = true
+    invited.TextWrapped = true
+
+    Servername.Name = "Servername"
+    Servername.Parent = InviteGUI
+    Servername.BackgroundTransparency = 1.000
+    Servername.Position = UDim2.new(0.0518867932, 0, 0.557692289, 0)
+    Servername.Size = UDim2.new(0, 191, 0, 50)
+    Servername.Font = Enum.Font.SourceSans
+    -- Set the server name, or default text if not provided
+    Servername.Text = data.name or "SERVERNAME"
+    Servername.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Servername.TextScaled = true
+    Servername.TextWrapped = true
+
+    accept.Name = "accept"
+    accept.Parent = InviteGUI
+    accept.BackgroundColor3 = Color3.fromRGB(93, 109, 255)
+    accept.Position = UDim2.new(0.0518867932, 0, 0.75, 0)
+    accept.Size = UDim2.new(0, 191, 0, 35)
+    accept.Font = Enum.Font.SourceSans
+    accept.Text = "Accept Invite"
+    accept.TextColor3 = Color3.fromRGB(255, 255, 255)
+    accept.TextSize = 20.000
+    UICorner_3.Parent = accept
+
+    decline.Name = "decline"
+    decline.Parent = InviteGUI
+    decline.BackgroundTransparency = 1.000
+    decline.Position = UDim2.new(0.127358496, 0, 0.907692313, 0)
+    decline.Size = UDim2.new(0, 158, 0, 15)
+    decline.Font = Enum.Font.SourceSans
+    decline.Text = "No Thanks, just load the script"
+    decline.TextColor3 = Color3.fromRGB(255, 255, 255)
+    decline.TextScaled = true
+    decline.TextWrapped = true
+
+    -- Button functionality
+
+    -- Copy invite link to clipboard when "Accept Invite" is clicked
+    accept.MouseButton1Click:Connect(function()
+        setclipboard(data.invite)
+        print("Invite link copied to clipboard: " .. data.invite)
+    end)
+
+    -- Close the GUI when decline is clicked
+    decline.MouseButton1Click:Connect(function()
+        Inviter:Destroy() -- Destroys the entire GUI
+    end)
 end
 
 return Module
