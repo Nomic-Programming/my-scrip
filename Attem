@@ -686,7 +686,7 @@ PlrTP:NewTextBox("Goto Player", "Can be shortened", function(txt)
 end)
 
 --MISC TAB BEGINS
-Random:NewButton("Client Admin", "Loads IY Admin", function()
+Random:NewButton("Infinite Yield Admin", "Loads IY Admin", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
 
@@ -701,7 +701,7 @@ Random:NewButton("Win", "Wins without teleporting", function()
 	end
 end)
 
-Random:NewButton("Sit", "Sits your ass down", function()
+Random:NewButton("Sit", "Sits your character down", function()
 	game.Players.LocalPlayer.Character.Humanoid.Sit = true
 end)
 
@@ -724,7 +724,7 @@ Random:NewTextBox("View Player", "Can be shortened", function(txt)
 			txt = v.Name
 		end
 	end
-	if txt == "me" or txt == "unview" then
+	if txt == "me" or txt == "" then
 		workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 	else
 		workspace.CurrentCamera.CameraSubject = game.Players[txt].Character.Humanoid
