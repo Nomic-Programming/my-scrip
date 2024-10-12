@@ -8,13 +8,6 @@ btw if it not working fully ur executor is probably just shit because this game 
 print("ok cart game troll GUI loaded lmao") --remove if you want
 
 --yeah
-local inviteModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
-inviteModule.Prompt({
-	name = "m",
-	invite = "https://discord.gg/ntts",
-})
-
-wait(5) --real
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Cart Ride Into Redface", "BloodTheme")
