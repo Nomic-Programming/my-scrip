@@ -6,8 +6,8 @@ local function getServerIcon(inviteLink)
     -- Extract the server ID from the invite link
     local serverID = inviteLink:match("discord%.gg/(%w+)")
     if serverID then
-        local icon = "https://cdn.discordapp.com/icons/" .. serverID .. "/icon.png"
-        return icon
+        -- Get the icon from Discord API; replace 'icon.png' with the actual icon hash
+        return "https://cdn.discordapp.com/icons/" .. serverID .. "/icon.png"
     end
     return "rbxasset://textures/ui/GuiImagePlaceholder.png" -- Default image if extraction fails
 end
