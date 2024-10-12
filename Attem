@@ -198,6 +198,24 @@ CartMain:NewTextBox("Mess Up Player", "Can be shortened", function(txt)
 	end
 end)
 
+AutoCart:NewToggle("Auto Spawn Cart", "Spawns every cart in automatically", function(tog)
+	if tog == true then
+		_G.AutoSpawn = true
+
+		while _G.AutoSpawn == true do
+			wait(1) -- so less fps drop
+			for i, v in pairs(game.workspace:GetDescendants()) do
+				if v.Name == "1Regen" or v.Name == "2Regen" or v.Name == "3Regen" or v.Name == "4Regen" then
+					fireclickdetector(v.Click)
+				end
+			end
+		end
+	else
+		_G.AutoSpawn = false
+	end
+end)
+
+
 AutoCart:NewToggle("Auto Toggle", "Really Annoying!", function(tog)
 	if tog == true then
 		--ok changed my mind i using _G. now
@@ -329,22 +347,6 @@ AutoCart:NewToggle("Auto Slow Speed", "Makes every cart go really slow", functio
 	end
 end)
 
-AutoCart:NewToggle("Auto Spawn Cart", "Spawns every cart in automatically", function(tog)
-	if tog == true then
-		_G.AutoSpawn = true
-
-		while _G.AutoSpawn == true do
-			wait(1) -- so less fps drop
-			for i, v in pairs(game.workspace:GetDescendants()) do
-				if v.Name == "1Regen" or v.Name == "2Regen" or v.Name == "3Regen" or v.Name == "4Regen" then
-					fireclickdetector(v.Click)
-				end
-			end
-		end
-	else
-		_G.AutoSpawn = false
-	end
-end)
 
 --PLAYER TAB BEGINS
 PlrMod:NewButton("Teleport Tool", "Equip and aim your mouse then click to TP to that position", function()
