@@ -1,6 +1,9 @@
-local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/mcdonalds2"))()
+-- Main Script
+local Module = loadstring(game:HttpGet("https://your-hosted-library-url-here"))()
 
+-- Call the prompt with the invite link, server name, and server image
 Module.Prompt({
-    invite = "discord.gg/ntts", -- required
-    name = "Custom sasdfd" -- optional, you can leave this out if you want
+    invite = "https://discord.gg/ntts", -- required
+    name = "Awesome Server", -- optional, you can leave this out if you want
+    image = "https://www.roblox.com/asset/?id=1234567890" -- optional server icon image (URL or asset ID)
 })
