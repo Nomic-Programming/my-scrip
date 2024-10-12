@@ -1,0 +1,4 @@
+local discord = loadstring(game:HttpGet("https://github.com/SkireScripts/Ouxie/blob/main/Projects/Discord%20Inviter/Loader.lua"))()
+discord:invite("https://discord.com/invite/getwave", "Wave", function()
+    print("Loaded!")
+end)
