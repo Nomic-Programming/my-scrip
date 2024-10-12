@@ -14,11 +14,13 @@ local ChannelName = Instance.new("TextLabel")
 local CopiedToClipboard = Instance.new("ImageButton")
 local UICorner_4 = Instance.new("UICorner")
 local Decline = Instance.new("TextButton")
-local key = Instance.new("Frame")
+local KeySystem = Instance.new("Frame")
 local UICorner_5 = Instance.new("UICorner")
 local hhas = Instance.new("TextLabel")
 local box = Instance.new("TextBox")
+local UICorner_6 = Instance.new("UICorner")
 local enter = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
 
 --Properties:
 
@@ -103,34 +105,36 @@ Decline.TextScaled = true
 Decline.TextSize = 14.000
 Decline.TextWrapped = true
 
-key.Name = "key"
-key.Parent = Promotion
-key.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-key.BorderColor3 = Color3.fromRGB(0, 0, 0)
-key.BorderSizePixel = 0
-key.Position = UDim2.new(0.349614382, 0, 0.121169917, 0)
-key.Size = UDim2.new(0, 220, 0, 270)
+KeySystem.Name = "KeySystem"
+KeySystem.Parent = Promotion
+KeySystem.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KeySystem.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KeySystem.BorderSizePixel = 0
+KeySystem.Position = UDim2.new(0.349614382, 0, 0.200667828, 0)
+KeySystem.Size = UDim2.new(0, 220, 0, 213)
 
-UICorner_5.Parent = key
+UICorner_5.Parent = KeySystem
 
 hhas.Name = "hhas"
-hhas.Parent = key
+hhas.Parent = KeySystem
 hhas.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 hhas.BorderColor3 = Color3.fromRGB(0, 0, 0)
 hhas.BorderSizePixel = 0
-hhas.Position = UDim2.new(0.0454545468, 0, 0.107407406, 0)
+hhas.Position = UDim2.new(0.0454545468, 0, 0.0481481478, 0)
 hhas.Size = UDim2.new(0, 200, 0, 50)
-hhas.Font = Enum.Font.SourceSans
-hhas.Text = "key haha"
+hhas.Font = Enum.Font.Roboto
+hhas.Text = "Key System"
 hhas.TextColor3 = Color3.fromRGB(0, 0, 0)
+hhas.TextScaled = true
 hhas.TextSize = 14.000
+hhas.TextWrapped = true
 
 box.Name = "box"
-box.Parent = key
+box.Parent = KeySystem
 box.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 box.BorderColor3 = Color3.fromRGB(0, 0, 0)
 box.BorderSizePixel = 0
-box.Position = UDim2.new(0.0454545468, 0, 0.348148137, 0)
+box.Position = UDim2.new(0.0454545468, 0, 0.381064177, 0)
 box.Size = UDim2.new(0, 200, 0, 50)
 box.Font = Enum.Font.SourceSans
 box.PlaceholderText = "type key here"
@@ -138,21 +142,25 @@ box.Text = ""
 box.TextColor3 = Color3.fromRGB(255, 255, 255)
 box.TextSize = 14.000
 
+UICorner_6.Parent = box
+
 enter.Name = "enter"
-enter.Parent = key
+enter.Parent = KeySystem
 enter.BackgroundColor3 = Color3.fromRGB(206, 206, 206)
 enter.BorderColor3 = Color3.fromRGB(0, 0, 0)
 enter.BorderSizePixel = 0
-enter.Position = UDim2.new(0.0454545468, 0, 0.714814842, 0)
+enter.Position = UDim2.new(0.0454545468, 0, 0.711111188, 0)
 enter.Size = UDim2.new(0, 200, 0, 50)
 enter.Font = Enum.Font.SourceSans
 enter.Text = "enter"
 enter.TextColor3 = Color3.fromRGB(0, 0, 0)
 enter.TextSize = 14.000
 
+UICorner_7.Parent = enter
+
 -- Scripts:
 
-local function OMFJZO_fake_script() -- Subscribe.LocalScript 
+local function MIFIRU_fake_script() -- Subscribe.LocalScript 
 	local script = Instance.new('LocalScript', Subscribe)
 
 	script.Parent.Activated:Connect(function()
@@ -164,8 +172,8 @@ local function OMFJZO_fake_script() -- Subscribe.LocalScript
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/Attem",true))()
 	end)
 end
-coroutine.wrap(OMFJZO_fake_script)()
-local function UVNMJ_fake_script() -- Decline.LocalScript 
+coroutine.wrap(MIFIRU_fake_script)()
+local function IIBYPFA_fake_script() -- Decline.LocalScript 
 	local script = Instance.new('LocalScript', Decline)
 
 	script.Parent.Activated:Connect(function()
@@ -174,16 +182,37 @@ local function UVNMJ_fake_script() -- Decline.LocalScript
 	end)
 	
 end
-coroutine.wrap(UVNMJ_fake_script)()
-local function DGLPX_fake_script() -- enter.LocalScript 
+coroutine.wrap(IIBYPFA_fake_script)()
+local function ULIKH_fake_script() -- PromotionGUI.LocalScript 
+	local script = Instance.new('LocalScript', PromotionGUI)
+
+	local promote = script.Parent
+	
+	promote.Draggable = true
+	promote.Selectable = true
+	promote.Active = true
+end
+coroutine.wrap(ULIKH_fake_script)()
+local function PTQTIK_fake_script() -- enter.LocalScript 
 	local script = Instance.new('LocalScript', enter)
 
 	script.Parent.MouseButton1Down:Connect(function()
 		if script.Parent.Parent.box.Text == "2763" then
 			script.Parent.Parent.Parent.PromotionGUI.Visible = true
+			script.Parent.Parent.Parent.KeySystem.Visible = false
 		else
 			game.Players.LocalPlayer:kick("wrong!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		end
 	end)
 end
-coroutine.wrap(DGLPX_fake_script)()
+coroutine.wrap(PTQTIK_fake_script)()
+local function WIAXGY_fake_script() -- KeySystem.LocalScript 
+	local script = Instance.new('LocalScript', KeySystem)
+
+	local key = script.Parent
+	
+	key.Draggable = true
+	key.Selectable = true
+	key.Active = true
+end
+coroutine.wrap(WIAXGY_fake_script)()
