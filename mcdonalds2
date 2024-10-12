@@ -1,117 +1,127 @@
--- Library Script (InviteLibrary.lua)
-local Module = {}
+-- Gui to Lua
+-- Version: 3.2
 
--- Function to fetch the server icon using Discord's API
+-- Instances:
+
+local Inviter = Instance.new("ScreenGui")
+local InviteGUI = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local ServerIcon = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+local invited = Instance.new("TextLabel")
+local Servername = Instance.new("TextLabel")
+local accept = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local decline = Instance.new("TextButton")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+
+-- Function to get the server icon from the invite link
 local function getServerIcon(inviteLink)
     -- Extract the server ID from the invite link
     local serverID = inviteLink:match("discord%.gg/(%w+)")
     if serverID then
-        -- Get the icon from Discord API; replace 'icon.png' with the actual icon hash
+        -- Get the server icon from Discord's API; this assumes you have the correct icon hash
         return "https://cdn.discordapp.com/icons/" .. serverID .. "/icon.png"
     end
-    return "rbxasset://textures/ui/GuiImagePlaceholder.png" -- Default image if extraction fails
+    return "rbxasset://textures/ui/GuiImagePlaceholder.png" -- Fallback image if extraction fails
 end
 
--- Function to display the invite prompt
-function Module.Prompt(data)
-    -- Check if "invite" is provided
-    if not data.invite then
-        error("Invite link is required!")
-    end
+--Properties:
 
-    -- Create the GUI elements
-    local Inviter = Instance.new("ScreenGui")
-    local InviteGUI = Instance.new("Frame")
-    local UICorner = Instance.new("UICorner")
-    local ServerIcon = Instance.new("ImageLabel")
-    local UICorner_2 = Instance.new("UICorner")
-    local invited = Instance.new("TextLabel")
-    local Servername = Instance.new("TextLabel")
-    local accept = Instance.new("TextButton")
-    local UICorner_3 = Instance.new("UICorner")
-    local decline = Instance.new("TextButton")
+Inviter.Name = "Inviter"
+Inviter.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Inviter.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-    -- GUI Properties
-    Inviter.Name = "Inviter"
-    Inviter.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-    Inviter.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+InviteGUI.Name = "InviteGUI"
+InviteGUI.Parent = Inviter
+InviteGUI.BackgroundColor3 = Color3.fromRGB(49, 51, 56)
+InviteGUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InviteGUI.BorderSizePixel = 0
+InviteGUI.Position = UDim2.new(0.5, -106, 0.5, -130) -- Centering the GUI
+InviteGUI.Size = UDim2.new(0, 212, 0, 260)
 
-    InviteGUI.Name = "InviteGUI"
-    InviteGUI.Parent = Inviter
-    InviteGUI.BackgroundColor3 = Color3.fromRGB(49, 51, 56)
-    InviteGUI.BorderSizePixel = 0
-    InviteGUI.Size = UDim2.new(0, 300, 0, 200)  -- Adjust size as needed
-    InviteGUI.Position = UDim2.new(0.5, -150, 0.5, -100) -- Centered
+UICorner.Parent = InviteGUI
 
-    UICorner.Parent = InviteGUI
+ServerIcon.Name = "ServerIcon"
+ServerIcon.Parent = InviteGUI
+ServerIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ServerIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ServerIcon.BorderSizePixel = 0
+ServerIcon.Position = UDim2.new(0.5, -50, 0.1, 0) -- Centered
+ServerIcon.Size = UDim2.new(0, 100, 0, 100)
 
-    ServerIcon.Name = "ServerIcon"
-    ServerIcon.Parent = InviteGUI
-    ServerIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    ServerIcon.Size = UDim2.new(0, 100, 0, 100)
-    ServerIcon.Position = UDim2.new(0.5, -50, 0.1, 0) -- Centered
-    -- Use the server image based on the invite link
-    ServerIcon.Image = getServerIcon(data.invite)
+-- Fetch the server icon from the invite link (Replace with actual invite link)
+local inviteLink = "discord.gg/yourInviteCode" -- Replace with your actual invite link
+ServerIcon.Image = getServerIcon(inviteLink) -- Get the server icon
 
-    UICorner_2.CornerRadius = UDim.new(0, 15)
-    UICorner_2.Parent = ServerIcon
+UICorner_2.CornerRadius = UDim.new(0, 15)
+UICorner_2.Parent = ServerIcon
 
-    invited.Name = "invited"
-    invited.Parent = InviteGUI
-    invited.BackgroundTransparency = 1.000
-    invited.Position = UDim2.new(0.5, -85, 0.5, -20) -- Centered
-    invited.Size = UDim2.new(0, 170, 0, 34)
-    invited.Font = Enum.Font.SourceSans
-    invited.Text = "You've been invited to join"
-    invited.TextColor3 = Color3.fromRGB(214, 214, 214)
-    invited.TextScaled = true
-    invited.TextWrapped = true
+invited.Name = "invited"
+invited.Parent = InviteGUI
+invited.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+invited.BackgroundTransparency = 1.000
+invited.BorderColor3 = Color3.fromRGB(0, 0, 0)
+invited.BorderSizePixel = 0
+invited.Position = UDim2.new(0.094339624, 0, 0.461538464, 0)
+invited.Size = UDim2.new(0, 170, 0, 34)
+invited.Font = Enum.Font.SourceSans
+invited.Text = "You've been invited to join"
+invited.TextColor3 = Color3.fromRGB(214, 214, 214)
+invited.TextScaled = true
+invited.TextSize = 14.000
+invited.TextWrapped = true
 
-    Servername.Name = "Servername"
-    Servername.Parent = InviteGUI
-    Servername.BackgroundTransparency = 1.000
-    Servername.Position = UDim2.new(0.5, -95, 0.5, 20) -- Centered
-    Servername.Size = UDim2.new(0, 191, 0, 50)
-    Servername.Font = Enum.Font.SourceSans
-    -- Set the server name, or default text if not provided
-    Servername.Text = data.name or "SERVERNAME"
-    Servername.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Servername.TextScaled = true
-    Servername.TextWrapped = true
+Servername.Name = "Servername"
+Servername.Parent = InviteGUI
+Servername.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Servername.BackgroundTransparency = 1.000
+Servername.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Servername.BorderSizePixel = 0
+Servername.Position = UDim2.new(0.0518867932, 0, 0.557692289, 0)
+Servername.Size = UDim2.new(0, 191, 0, 50)
+Servername.Font = Enum.Font.SourceSans
+Servername.Text = "SERVERNAME"
+Servername.TextColor3 = Color3.fromRGB(255, 255, 255)
+Servername.TextScaled = true
+Servername.TextSize = 14.000
+Servername.TextWrapped = true
 
-    accept.Name = "accept"
-    accept.Parent = InviteGUI
-    accept.BackgroundColor3 = Color3.fromRGB(93, 109, 255)
-    accept.Position = UDim2.new(0.2, 0, 0.75, 0)
-    accept.Size = UDim2.new(0, 100, 0, 35)
-    accept.Font = Enum.Font.SourceSans
-    accept.Text = "Accept Invite"
-    accept.TextColor3 = Color3.fromRGB(255, 255, 255)
-    accept.TextSize = 20.000
-    UICorner_3.Parent = accept
+accept.Name = "accept"
+accept.Parent = InviteGUI
+accept.BackgroundColor3 = Color3.fromRGB(93, 109, 255)
+accept.BorderColor3 = Color3.fromRGB(0, 0, 0)
+accept.BorderSizePixel = 0
+accept.Position = UDim2.new(0.0518867932, 0, 0.75, 0)
+accept.Size = UDim2.new(0, 191, 0, 35)
+accept.Font = Enum.Font.SourceSans
+accept.Text = "Accept Invite"
+accept.TextColor3 = Color3.fromRGB(255, 255, 255)
+accept.TextSize = 20.000
 
-    decline.Name = "decline"
-    decline.Parent = InviteGUI
-    decline.BackgroundTransparency = 1.000
-    decline.Position = UDim2.new(0.2, 0, 0.85, 0)
-    decline.Size = UDim2.new(0, 100, 0, 15)
-    decline.Font = Enum.Font.SourceSans
-    decline.Text = "No Thanks"
-    decline.TextColor3 = Color3.fromRGB(255, 255, 255)
-    decline.TextScaled = true
-    decline.TextWrapped = true
+UICorner_3.Parent = accept
 
-    -- Button functionality
-    -- Copy invite link to clipboard when "Accept Invite" is clicked
-    accept.MouseButton1Click:Connect(function()
-        setclipboard(data.invite)
-        print("Invite link copied to clipboard: " .. data.invite)
-    end)
+decline.Name = "decline"
+decline.Parent = InviteGUI
+decline.BackgroundColor3 = Color3.fromRGB(93, 109, 255)
+decline.BackgroundTransparency = 1.000
+decline.BorderColor3 = Color3.fromRGB(0, 0, 0)
+decline.BorderSizePixel = 0
+decline.Position = UDim2.new(0.127358496, 0, 0.907692313, 0)
+decline.Size = UDim2.new(0, 158, 0, 15)
+decline.Font = Enum.Font.SourceSans
+decline.Text = "No Thanks, just load the script"
+decline.TextColor3 = Color3.fromRGB(255, 255, 255)
+decline.TextScaled = true
+decline.TextSize = 20.000
+decline.TextWrapped = true
 
-    -- Close the GUI when decline is clicked
-    decline.MouseButton1Click:Connect(function()
-        Inviter:Destroy() -- Destroys the entire GUI
-    end)
-end
+UIAspectRatioConstraint.Parent = InviteGUI
+UIAspectRatioConstraint.AspectRatio = 1.888
 
-return Module
+-- Example usage (This can be triggered based on an event)
+local exampleInviteLink = "discord.gg/yourInviteCode" -- Replace with your actual invite link
+ServerIcon.Image = getServerIcon(exampleInviteLink) -- Load the server icon
+
+-- Optional: Set server name based on the invite link or provide a default
+Servername.Text = "SERVERNAME" -- You can customize this based on server information
