@@ -651,12 +651,21 @@ PlrMod:NewTextBox("WalkSpeed", "Type 're' to reset do default", function(txt)
 	end
 end)
 
+PlrMod:NewButton("Default Walkspeed", "Sets Walkspeed to Default (16)", function()
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+
 PlrMod:NewTextBox("JumpPower", "Type 're' to reset do default", function(txt)
 	if txt == "re" then
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 	else
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = txt
 	end
+end)
+
+
+PlrMod:NewButton("Default JumpPower", "Sets JumpPower to Default (50)", function()
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 end)
 
 PlrTP:NewButton("TP Spawn", "Teleports your character here", function()
