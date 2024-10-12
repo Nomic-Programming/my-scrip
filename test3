@@ -1,5 +1,6 @@
 local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
-Module.Prompt({ invite = "discord.gg/ntts", name = "name here" }) -- name is optional
-
-Module.Join("discord.gg/ntts")
+Module.Prompt({
+    invite = "discord.gg/ntts", -- required
+    name = "custom serssadasd" -- optional
+})
