@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Ride Into Redface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic styles for the body */
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container for the main GUI */
+        .container {
+            background-color: #c0392b;
+            width: 650px;
+            height: 350px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header styles */
+        .header {
+            padding: 10px;
+            font-size: 20px;
+            color: white;
+            text-align: left;
+            font-family: 'Roboto', sans-serif;
+            background-color: #b72a27;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            background-color: #b72a27;
+            width: 150px;
+            padding-top: 10px;
+            padding-left: 10px;
+            border-radius: 10px 0 0 10px;
+            height: 100%;
+        }
+
+        /* List styles for sidebar */
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: white;
+        }
+
+        /* Normal tab styles */
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+        }
+
+        /* Selected tab styles */
+        .tab.selected {
+            background-color: #ec7063;
+            padding: 10px 15px;
+            margin: 0 5px;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            background-color: #ee5152;
+            border-radius: 0 10px 10px 0;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        /* Button styles */
+        .button {
+            background-color: #b43b3b;
+            color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: left;
+            padding-left: 40px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: space-between; /* Space between icon, text, and input */
+        }
+
+        /* Text box inside button styles */
+        .text-box {
+            background-color: #a52c2b; /* Darker red than buttons */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            width: 200px; /* Increased width of the text box */
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            margin-right: 10px; /* Added space for an icon */
+            position: relative;
+            left: -30px; /* Move the text box 30 pixels to the left */
+            height: 30px; /* Set height for consistent sizing */
+            line-height: 30px; /* Center text vertically */
+        }
+
+        /* Hover effects for buttons */
+        .button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Section styles */
+        .section {
+            background-color: #cc3332;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        /* Toggle styles */
+        .toggle {
+            display: flex;
+            align-items: center;
+            background-color: #b43b3b;
+            color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        /* Toggle hover effect */
+        .toggle:hover {
+            background-color: #c0392b;
+        }
+
+        /* Indicator styles */
+        .indicator {
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            border: 2px solid white;
+            position: absolute;
+            left: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Inner circle for on state */
+        .inner-indicator {
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            display: none;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        /* Fade-out animation for inner circle */
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Fade-in animation for inner circle */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Icon styles */
+        .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background-image: url('https://raw.githubusercontent.com/Nomic-Programming/my-scrip/refs/heads/main/image-removebg-preview(2).png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+        // Function to toggle the state of the toggle buttons
+        function toggleButton(button) {
+            const innerIndicator = button.querySelector('.inner-indicator');
+            const indicator = button.querySelector('.indicator');
+
+            // Toggle visibility of inner circle with animations
+            if (innerIndicator.style.display === 'flex') {
+                innerIndicator.style.animation = 'fadeOut 0.2s ease-in-out';
+                setTimeout(() => {
+                    innerIndicator.style.display = 'none';
+                }, 200);
+            } else {
+                innerIndicator.style.display = 'flex';
+                innerIndicator.style.animation = 'fadeIn 0.2s ease-in-out';
+            }
+        }
+
+        // Function to select the tab and change its color
+        function selectTab(tab) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('selected'));
+            tab.classList.add('selected');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <div class="header">Carts</div>
+        
+        <div style="display: flex; height: 100%;">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul>
+                    <li class="tab selected" onclick="selectTab(this)">Carts</li>
+                    <li class="tab" onclick="selectTab(this)">Player</li>
+                    <li class="tab" onclick="selectTab(this)">Misc</li>
+                    <li class="tab" onclick="selectTab(this)">Info/Setting</li>
+                </ul>
+            </div>
+
+            <!-- Main content -->
+            <div class="main-content">
+                <!-- Section Title -->
+                <div class="section">Carts</div>
+
+                <div class="button">
+                    <div class="icon"></div>
+                    Spawn All Carts
+                </div>
+                
+                <div class="button">
+                    <div class="icon"></div>
+                    Toggle All Carts
+                </div>
+
+                <div class="button">
+                    <div class="icon"></div>
+                    Speed Up All Carts
+                </div>
+                <div class="button">
+                    <div class="icon"></div>
+                    Slow Down All Carts
+                </div>
+                <div class="button">
+                    <div class="icon"></div>
+                    Turn On All Carts
+                </div>
+                <div class="button">
+                    <div class="icon"></div>
+                    Turn Off All Carts
+                </div>
+
+                <!-- Updated Button -->
+                <div class="button">
+                    <div class="icon"></div>
+                    Sabotage Player
+                    <input type="text" class="text-box" placeholder="Type here...">
+                </div>
+
+                <!-- Cart Auras Section -->
+                <div class="section">Cart Auras</div>
+
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Speed Up Carts Aura
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Slow Down Carts Aura
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Turn On Carts Aura
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Turn Off Carts Aura
+                </div>
+
+                <!-- New section under Aura -->
+                <div class="section">Auto Carts</div>
+                
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Spawn Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Toggle Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Turn On Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Turn Off Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Speed Up Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Slow Down Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Fast Speed Carts
+                </div>
+                <div class="toggle" onclick="toggleButton(this)">
+                    <div class="indicator">
+                        <div class="inner-indicator"></div>
+                    </div>
+                    Auto Slow Speed Carts
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
